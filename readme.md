@@ -12,8 +12,8 @@
 
 ## install dependencies
 
-***python3 -m pip install -r requirements.txt**
+***python3 -m pip install -r requirements.txt***
 
 ## in case you install a new dependencies, update requirements.txt
 
-***pip freeze > requirements.txt***
+***python3 -m  pip freeze > requirements.txt***
