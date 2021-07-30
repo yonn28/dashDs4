@@ -18,7 +18,7 @@
 
 ## run proyect
 
-***python3 main.py ****
+**python3 main.py**
 ## in case you install a new dependencies, update requirements.txt
 
 ***python3 -m  pip freeze > requirements.txt***
