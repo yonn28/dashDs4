@@ -35,7 +35,7 @@ controlsMap = dbc.Card(
 
 layout = html.Div([
         html.Div([
-            html.H4("Colombian map by years"),
+            html.H4("Colombian map by months"),
             html.Div(controlsMap),
             html.Div(
                 dcc.Graph(
