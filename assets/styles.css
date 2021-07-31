@@ -49,5 +49,14 @@ a:hover{
     height: 100%;
 }
 
+.grid-data{
+    padding:15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    justify-content: space-evenly; 
+}
+
+
 
 
