@@ -45,6 +45,7 @@ layout = html.Div([
                 )
             )
         ])
+             
 ])
 
 @app.callback(
