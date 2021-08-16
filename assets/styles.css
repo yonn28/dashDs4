@@ -3,7 +3,7 @@ html {
 }
 
 body{
-    background-color:#f6f8fa;
+    background-color:#F8F9FF;
     position: fixed;
     top: 0;
     left: 0;
@@ -12,50 +12,92 @@ body{
     display: block;
 }
 
+.rooter_container{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
 a{
     text-decoration: none;
-    color: #fff;
+    color: white;
 }
 
 a:hover{
-    color: black;
-    background-color: #fff;
+    color: white;
+    background-color: #145795;
+    text-decoration: none;
     padding: 2px;
 }
 
-.app_header{
-    width:100%; 
-	overflow:hidden; 
-	background:rgb(36, 41, 46);
-	margin-bottom: 0px;
-    color:#fff;
-    display:flex;
-    flex-direction: column;
-    padding: 10px;
-    justify-content: center;
-    text-align: center;
-    margin-top: 0px;
-}
-
-.page_reset{
-    top: 0;
-    padding: 0px;
-    width: 100%;
-    left: 0;
-    position: fixed;
-}
-.rooter_container{
+.app_side_bar{
     display: flex;
-    height: 100%;
+    flex: 12;
+    padding: 2rem 1rem;
+	background:#0B3862;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
 }
 
-.grid-data{
-    padding:15px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    justify-content: space-evenly; 
+.app-container__header__content{
+    flex: 88;
+    overflow-y: scroll;
 }
+
+.app_header{
+    top: 0;
+    position: fixed;
+    width: 85%;
+    padding: 5px 5% 5px 5px;
+    background: #fff;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: 2px 2px 2px 1px #d2d5d6;
+}
+
+.nav-bar__links{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 40%;
+    height: 20%;
+}
+
+.nav-bar__links a{
+    margin-top: 10px;
+}
+
+.nav-bar__links p{
+    margin-top: 20px;
+    color: #51CBFF;
+}
+
+.img_footer{
+    position: fixed;
+    bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.img_footer img{
+    margin: 10%;
+    max-width: 4rem;
+    max-height: 80%;
+}
+
+.content {
+    margin-top: 60px;
+    padding: 15px;
+}
+/* mobile */
+@media (max-width: 780px) {
+    .img_footer{
+        position: fixed;
+        display: none;
+    }
+}
+
 
 
 

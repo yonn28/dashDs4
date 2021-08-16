@@ -13,9 +13,10 @@ import pandas as pd
 # get relative data folder
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
-base_final = pd.read_csv(DATA_PATH.joinpath('base_final.csv'))
+base_final = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_final.csv')
 
 figmap , dpts_count , colombia  = mapcolombia.getfigmap(base_final)
+
 
 controlsMap = dbc.Card(
     [
@@ -44,8 +45,8 @@ layout = html.Div([
                 )
             )
         ])
-
-],className='grid-data')
+             
+])
 
 @app.callback(
     Output('colombia_plot','figure'),
@@ -56,7 +57,7 @@ def graph_map_per_year(year = 2018):
     figmap = px.choropleth_mapbox(dpts_count_filtered , geojson=colombia, locations='nom_dpto', 
                             featureidkey="properties.DPTO_CNMBR",
                             color='count_ratio',
-                            color_continuous_scale="Viridis",
+                            color_continuous_scale='plasma',
                             mapbox_style="carto-positron",
                             zoom=3, center = {"lat": 4.570868, "lon": -74.297333},
                             opacity=0.5,
