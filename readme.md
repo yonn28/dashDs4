@@ -23,16 +23,16 @@
 
 ***python3 -m  pip freeze > requirements.txt***
 
-# Docker testing local
+## Docker testing local
 
-***docker build -t docker-ds4 .  ****
+**docker build -t docker-ds4 .**
 ***docker run docker-ds4 -p 8080:8080***
 
-***it's expose at 8080 port in localhost***
+it's expose at 8080 port in localhost
 
-## deploy gcp
+# deploy gcp by hand
 
-#### setting default region
+### setting default region
 ***gcloud config set run/region northamerica-northeast1***
  
 ### setting gcloud google container registry
@@ -43,7 +43,7 @@
 
 ### creating user for github actions please configure secrets with this info
 
-### follow along this medium article
+### follow along this medium article for github actions pipeline configuration
 https://medium.com/google-cloud/how-to-deploy-your-cloud-run-service-using-github-actions-e5b6a6f597a3
 
 ***gcloud iam service-accounts keys create ~/sa-private-key.json --iam-account=sa-githubActions@ds4all-deploy.iam.gserviceaccount.com***
