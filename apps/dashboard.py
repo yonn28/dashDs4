@@ -13,7 +13,7 @@ import pandas as pd
 # get relative data folder
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
-base_final = pd.read_csv(DATA_PATH.joinpath('base_final.csv'))
+base_final = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_final.csv')
 
 figmap , dpts_count , colombia  = mapcolombia.getfigmap(base_final)
 
