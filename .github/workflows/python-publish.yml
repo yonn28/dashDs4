@@ -32,17 +32,19 @@ jobs:
     
     - name: Build
       run: |
-        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld:latest .
+        docker build -t gcr.io/ds4all-deploy/helloworld:latest .
 
     - name: Push
       run: |
-        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld:latest
+        docker push gcr.io/ds4all-deploy/helloworld:latest
 
     - name: Deploy
       run: |
         gcloud run deploy helloworld \
         --region europe-west1 \
-        --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/helloworld \
+        --image gcr.io/ds4all-deploy/helloworld \
         --platform managed \
         --allow-unauthenticated \
-        --project ${{ secrets.GCP_PROJECT_ID }}
+        --project ds4all-deploy \
+        --memory=8Gi \
+        --cpu=2
