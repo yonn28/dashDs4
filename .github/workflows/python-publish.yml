@@ -15,18 +15,16 @@ on:
 jobs:
   deploy:
 
+    name: Cloud Run Deployment
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - name: Setup GCP Service Account
+      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
       with:
-        python-version: '3.x'
-    - name: Set up Cloud SDK
-      uses: google-github-actions/setup-gcloud@master
-      with:
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        version: 'latest'
+        service_account_email: ${{ secrets.GCP_SA_EMAIL }}
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         export_default_credentials: true
 
