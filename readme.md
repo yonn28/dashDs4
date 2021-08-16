@@ -23,12 +23,12 @@
 
 ***python3 -m  pip freeze > requirements.txt***
 
-### for testing docker in local
+# Docker testing local
 
 ***docker build -t docker-ds4 .  ****
-*** docker run docker-ds4 -p 8080:8080 ***
+***docker run docker-ds4 -p 8080:8080***
 
-***it's expose at 8080 port localhost***
+***it's expose at 8080 port in localhost***
 
 ## deploy gcp
 
@@ -43,7 +43,7 @@
 
 ### creating user for github actions please configure secrets with this info
 
-### follow this medium article
-(https://medium.com/google-cloud/how-to-deploy-your-cloud-run-service-using-github-actions-e5b6a6f597a3)
+### follow along this medium article
+https://medium.com/google-cloud/how-to-deploy-your-cloud-run-service-using-github-actions-e5b6a6f597a3
 
 ***gcloud iam service-accounts keys create ~/sa-private-key.json --iam-account=sa-githubActions@ds4all-deploy.iam.gserviceaccount.com***
