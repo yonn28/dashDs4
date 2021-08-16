@@ -32,19 +32,19 @@ jobs:
     
     - name: Build
       run: |
-        docker build -t gcr.io/ds4all-deploy/dash-ds4-examaple:latest .
+        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/dash-ds4-examaple:latest .
 
     - name: Push
       run: |
-        docker push gcr.io/ds4all-deploy/dash-ds4-examaple:latest
+        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/dash-ds4-examaple:latest
 
     - name: Deploy
       run: |
         gcloud run deploy dash-ds4-examaple  \
         --region northamerica-northeast1  \
-        --image gcr.io/ds4all-deploy/dash-ds4-examaple  \
+        --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/dash-ds4-examaple  \
         --platform managed \
         --allow-unauthenticated \
-        --project ds4all-deploy \
+        --project ${{ secrets.GCP_PROJECT_ID }} \
         --memory=8Gi \
         --cpu=2
