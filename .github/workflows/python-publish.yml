@@ -1,12 +1,5 @@
-# This workflow will upload a Python Package using Twine when a release is created
-# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Deploy to gcp
+name: Deploy GCP
 
 on:
   push:
@@ -15,24 +8,23 @@ on:
 jobs:
   deploy:
 
-    name: Cloud Run Deployment
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup GCP Service Account
-      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        version: 'latest'
-        service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
-        export_default_credentials: true
-
+        python-version: '3.x'
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+          version: 'latest'
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
     - name: Use gcloud CLI
       run: gcloud info
-
+      
     - name: deploy docker image
       run: gcloud builds submit --tag gcr.io/ds4all-deploy/dash-ds4-examaple  --project=ds4all-deploy
-    
-    - name: run docker image
-      run: gcloud run deploy --image gcr.io/ds4all-deploy/dash-ds4-examaple --platform managed  --project=ds4all-deploy --allow-unauthenticated --memory=8Gi --cpu=2
