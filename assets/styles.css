@@ -34,7 +34,7 @@ a:hover{
     display: flex;
     flex: 12;
     padding: 2rem 1rem;
-	background:#0B3862;
+	background:rgb(108, 117, 125);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
 }
