@@ -34,7 +34,7 @@ a:hover{
     display: flex;
     flex: 12;
     padding: 2rem 1rem;
-	background:red;
+	background:#0B3862;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
 }
@@ -90,7 +90,7 @@ a:hover{
     margin-top: 60px;
     padding: 15px;
 }
-/* mobile */
+/* table */
 @media (max-width: 780px) {
     .img_footer{
         position: fixed;
