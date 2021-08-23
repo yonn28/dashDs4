@@ -57,7 +57,7 @@ def graph_map_per_year(year = 2018):
     figmap = px.choropleth_mapbox(dpts_count_filtered , geojson=colombia, locations='nom_dpto', 
                             featureidkey="properties.DPTO_CNMBR",
                             color='count_ratio',
-                            color_continuous_scale='plasma',
+                            color_continuous_scale='ylorrd',
                             mapbox_style="carto-positron",
                             zoom=3, center = {"lat": 4.570868, "lon": -74.297333},
                             opacity=0.5,
