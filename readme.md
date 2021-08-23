@@ -1,4 +1,4 @@
-# proyect for DS4
+# project for DS4A
 
 ## instructions
 
