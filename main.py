@@ -8,15 +8,15 @@ from app import app
 # Connect to app pages
 from apps import dashboard, form
 
-#USERNAMEINFO = [['user','password']]
-#auth = dash_auth.BasicAuth(app,USERNAMEINFO)
+# USERNAMEINFO = [['user','password']]
+# auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
 
 header = html.Div([
     html.Img(src='/assets/correlation.png')
 ], className="app_header")
 
-sidebar =  html.Div(
+sidebar = html.Div(
     [
         dbc.Nav(
             [
@@ -29,15 +29,15 @@ sidebar =  html.Div(
                 dbc.NavLink('Prediction Tool', href='/apps/PredicTool', active="exact"),
                 dbc.NavLink('About Us', href='/apps/About', active="exact"),
             ], className='nav-bar__links',
-            vertical = True,
-            pills = True,
+            vertical=True,
+            pills=True,
         ),
         html.Div(
             [
                 html.Img(src='/assets/bienestar.png'),
                 html.Img(src='/assets/team.png')
             ],
-        className="img_footer")
+            className="img_footer")
     ], className='app_side_bar'
 )
 
@@ -46,10 +46,11 @@ app.layout = html.Div([
     sidebar,
     html.Div([
         header,
-        html.Div(id='page-content', children=[],className='content')
+        html.Div(id='page-content', children=[], className='content')
     ], className='app-container__header__content')
-    
+
 ], className='rooter_container')
+
 
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
