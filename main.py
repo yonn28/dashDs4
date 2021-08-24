@@ -35,8 +35,6 @@ header = dbc.Navbar(
     light=True,
 )
 
-
-
 sidebar = html.Div(
     [
         dbc.Nav(
