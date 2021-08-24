@@ -6,7 +6,6 @@ from dash.dependencies import Input, Output
 import plotly.express as px
 import pathlib
 import joblib
-from utils import SHAPValues
 from app import app
 
 """
@@ -14,7 +13,7 @@ from app import app
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
 base_final = pd.read_csv('/datasets/base_malnutrition.csv')
-"""
+
 
 '''
 2. Parámetros de corrida
@@ -44,19 +43,21 @@ base_malnutrition = pd.read_csv(pathBaseMalnutrition).drop(["IdBeneficiario","Un
 modelo_malnutrition = joblib.load(pathModeloMalnutrition)
 
 shap_values_fig = SHAPValues.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
+"""
 
 layout = dbc.Container([
     dbc.Row([
     html.Img(src='/assets/long_child.jpg', height="200px"),
     ], align="center",
     ),
+    """
     dbc.Row([
         dcc.Graph(
                     id = 'SHAPValues_plot', 
                     figure = shap_values_fig,
                 )
     ]),
-
+    """
     dbc.Row([
 
     ]),
