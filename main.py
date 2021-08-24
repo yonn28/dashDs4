@@ -70,12 +70,12 @@ app.layout = html.Div([
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
-    if pathname == '/apps/dashboard':
-        return dashboard.layout
+    if pathname == '/apps/Dashboard':
+        return Dashboard.layout
     if pathname == '/apps/Malnutrition':
         return Malnutrition.layout
     else:
-        return dashboard.layout
+        return Dashboard.layout
 
 
 if __name__ == '__main__':
