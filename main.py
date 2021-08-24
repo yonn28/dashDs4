@@ -15,6 +15,7 @@ from apps import dashboard, form
 header = html.Div([
     html.Img(src='/assets/correlation.png')
 ], className="app_header")
+
 sidebar =  html.Div(
     [
         dbc.Nav(
@@ -27,7 +28,7 @@ sidebar =  html.Div(
                 dbc.NavLink('Relapse', href='/apps/Relapse', active="exact"),
                 dbc.NavLink('Prediction Tool', href='/apps/PredicTool', active="exact"),
                 dbc.NavLink('About Us', href='/apps/About', active="exact"),
-            ],
+            ], className='nav-bar__links',
             vertical = True,
             pills = True,
         ),
