@@ -11,10 +11,29 @@ from apps import dashboard, form
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
-
+"""
 header = html.Div([
     html.Img(src='/assets/correlation.png')
 ], className="app_header")
+"""
+
+header = dbc.Navbar(
+    [
+        html.A(
+            dbc.Row(
+                [
+                    dbc.Col(dbc.NavbarBrand("ICBF - Children Malnutrition in Colombia", className="font-weight-bold"), align="left")
+                ],
+                align="center",
+            ),
+        ),
+        dbc.Collapse(
+            html.Img(src='/assets/correlation.png', height="50px", className="ml-auto flex-nowrap mt-3 mt-md-0"), id="navbar-collapse", navbar=True, is_open=False
+        ),
+    ],
+    color="white",
+    light=True,
+)
 
 sidebar = html.Div(
     [
@@ -38,7 +57,7 @@ sidebar = html.Div(
                 html.Img(src='/assets/team.png')
             ],
             className="img_footer")
-    ], className='app_side_bar'
+    ]
 )
 
 app.layout = html.Div([
