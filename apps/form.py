@@ -16,7 +16,7 @@ DATA_PATH = PATH.joinpath("../datasets").resolve()
 base_malnutrition = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_malnutrition.csv').drop(["IdBeneficiario","Unnamed: 0","Unnamed: 0.1"],axis=1)
 modelo_malnutrition = joblib.load('https://storage.googleapis.com/ds4all-test-bd1/Modelo_malnutrition.sav')
 
-shap_values_fig = SHAPValues.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
+#shap_values_fig = SHAPValues.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
 
 layout = dbc.Container([
     dbc.Row([
@@ -24,13 +24,16 @@ layout = dbc.Container([
     ], align="center",
     ),
     dbc.Row([
+
+    ]),
+])
+
+
+"""
+    dbc.Row([
         dcc.Graph(
                     id = 'SHAPValues_plot',
                     figure = shap_values_fig,
                 )
     ]),
-
-    dbc.Row([
-
-    ]),
-])
+    """

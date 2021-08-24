@@ -73,6 +73,11 @@ a:hover{
     color: #51CBFF;
 }
 
+.text-p{
+    margin-top: 20px;
+    color: #51CBFF;
+}
+
 .img_footer{
     position: fixed;
     bottom: 10px;

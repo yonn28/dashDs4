@@ -6,7 +6,7 @@ import pathlib
 from app import app
 import dash_bootstrap_components as dbc
 #colombian map dependencies
-from utils import mapcolombia
+#from utils import mapcolombia
 import pandas as pd
 
 
@@ -15,9 +15,15 @@ PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
 base_final = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_final.csv')
 
-figmap , dpts_count , colombia  = mapcolombia.getfigmap(base_final)
+#figmap , dpts_count , colombia  = mapcolombia.getfigmap(base_final)
 
+layout = html.Div([
+    html.Div([
+        html.H4("Colombian map by years")
+    ])
+])
 
+"""
 controlsMap = dbc.Card(
     [
         dbc.FormGroup(
@@ -65,3 +71,4 @@ def graph_map_per_year(year = 2018):
                             )
     figmap.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
     return figmap
+"""
