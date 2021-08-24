@@ -20,7 +20,7 @@ sidebar =  html.Div(
         dbc.Nav(
             [
                 html.Hr(),
-                html.P("ANALYTICS", classname="lead"),
+                html.P("ANALYTICS"),
                 dbc.NavLink('Dashboard', href='/apps/Dashboard', active="exact"),
                 html.P("CHILDREN AT RISK"),
                 dbc.NavLink('Malnutrition', href='/apps/Malnutrition', active="exact"),

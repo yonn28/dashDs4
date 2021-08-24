@@ -3,7 +3,7 @@ html {
 }
 
 body{
-    background-color:#F8F9FF;
+    background-color:#F2F4FD;
     position: fixed;
     top: 0;
     left: 0;
@@ -32,9 +32,9 @@ a:hover{
 
 .app_side_bar{
     display: flex;
-    flex: 12;
+    flex: 10;
     padding: 2rem 1rem;
-	background:#0B3862;
+    background:#0B3862;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
 }
