@@ -46,10 +46,7 @@ shap_values_fig = SHAPValues.plotShapValuesTop(modelo_malnutrition, base_malnutr
 """
 
 layout = dbc.Container([
-    dbc.Row([
     html.Img(src='/assets/long_child.jpg', height="200px"),
-    ], align="center",
-    ),
     """
     dbc.Row([
         dcc.Graph(
@@ -58,7 +55,4 @@ layout = dbc.Container([
                 )
     ]),
     """
-    dbc.Row([
-
-    ]),
 ])
