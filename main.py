@@ -1,7 +1,7 @@
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import dash_auth
 from app import app
 
@@ -11,15 +11,25 @@ from apps import dashboard, form
 #USERNAMEINFO = [['user','password']]
 #auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
+
+header = html.Div([
+    html.Img(src='/assets/correlation.png')
+], className="app_header")
 sidebar =  html.Div(
     [
-        html.Div(
-            [   
-                html.P("ANALYTICS"),
-                dcc.Link('Dashboard', href='/apps/Dashboard'),
+        dbc.Nav(
+            [
+                html.Hr(),
+                html.P("ANALYTICS", classname="lead"),
+                dbc.NavLink('Dashboard', href='/apps/Dashboard', active="exact"),
                 html.P("CHILDREN AT RISK"),
-                dcc.Link('Malnutrition', href='/apps/Malnutrition')
-            ], className='nav-bar__links'
+                dbc.NavLink('Malnutrition', href='/apps/Malnutrition', active="exact"),
+                dbc.NavLink('Relapse', href='/apps/Relapse', active="exact"),
+                dbc.NavLink('Prediction Tool', href='/apps/PredicTool', active="exact"),
+                dbc.NavLink('About Us', href='/apps/About', active="exact"),
+            ],
+            vertical = True,
+            pills = True,
         ),
         html.Div(
             [
@@ -29,10 +39,6 @@ sidebar =  html.Div(
         className="img_footer")
     ], className='app_side_bar'
 )
-
-header = html.Div([
-    html.Img(src='/assets/correlation.png')
-], className="app_header")
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
