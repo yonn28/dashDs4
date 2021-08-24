@@ -13,7 +13,26 @@ import pandas as pd
 # get relative data folder
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
-base_final = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_final.csv')
+#base_final = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_final.csv')
+
+# Authenticated access to GC Storage
+import pandas as pd
+from io import BytesIO, StringIO
+from google.cloud import storage
+import os
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="assets/ds4a-project-322919-838eb9846309.json"
+storage_client = storage.Client()
+buckets = list(storage_client.list_buckets())
+bucket = storage_client.get_bucket("base_final_cloud") # get bucket data as blob
+blob = bucket.get_blob('base_final.csv') # convert to string
+
+byte_stream = BytesIO()
+blob.download_to_file(byte_stream)
+byte_stream.seek(0)
+fileobj = byte_stream
+base_final = pd.read_csv(fileobj) # read csv 
+
 
 figmap , dpts_count , colombia  = mapcolombia.getfigmap(base_final)
 
