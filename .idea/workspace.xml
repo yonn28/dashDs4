@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="Correction to main" />
+    <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="Correction to main">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/Malnutrition.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/Malnutrition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/happychildren.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/long_child.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +81,7 @@
       <workItem from="1628993071520" duration="1858000" />
       <workItem from="1629756264555" duration="2032000" />
       <workItem from="1629758392936" duration="9668000" />
-      <workItem from="1629786445204" duration="6752000" />
+      <workItem from="1629786445204" duration="6802000" />
     </task>
     <task id="LOCAL-00001" summary="Change of bootstrap theme">
       <created>1629757259244</created>
