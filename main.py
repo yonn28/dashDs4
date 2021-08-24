@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output, State
 from app import app
 
 # Connect to app pages
-from apps import Malnutrition, Relapse, PredicTool
+from apps import dashboard, Malnutrition, Relapse, PredicTool
 
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
@@ -37,7 +37,7 @@ sidebar = html.Div(
             [
                 html.Hr(),
                 html.P("ANALYTICS"),
-                dbc.NavLink('Dashboard', href='/apps/Dashboard', active="exact"),
+                dbc.NavLink('Dashboard', href='/apps/dashboard', active="exact"),
                 html.P("CHILDREN AT RISK"),
                 dbc.NavLink('Malnutrition', href='/apps/Malnutrition', active="exact"),
                 dbc.NavLink('Relapse', href='/apps/Relapse', active="exact"),
