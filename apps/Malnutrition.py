@@ -27,9 +27,11 @@ MODEL_DIR = os.environ["MODEL_DIR"]
 MODEL_FILE_MALN = os.environ["MODEL_FILE_MALN"]
 MODEL_PATH_MALN = os.path.join(MODEL_DIR, MODEL_FILE_MALN)
 
+
 #modelo_malnutrition_path = DATA_PATH+'Modelo_malnutrition.sav'
 #with urlopen('https://storage.googleapis.com/ds4all-test-bd1/Modelo_malnutrition.sav') as response:
-modelo_malnutrition = load(os.path.join(MODEL_PATH_MALN))
+
+#modelo_malnutrition = load('Modelo_malnutrition.sav')
 
 base_malnutrition = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_malnutrition.csv').drop(["IdBeneficiario","Unnamed: 0","Unnamed: 0.1"],axis=1)
 #SHAP_Val.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
