@@ -6,8 +6,8 @@ COPY . ./
 
 
 ENV MODEL_DIR=/assets/models
-ENV MODEL_FILE_MALN=Modelo_malnutrition.sav
-ENV MODEL_FILE_RELP=Modelo_relapse.sav
+ENV MODEL_FILE_MALN=Modelo_malnutrition.joblib
+ENV MODEL_FILE_RELP=Modelo_relapse.joblib
 
 RUN python -m pip install -r requirements.txt
 
