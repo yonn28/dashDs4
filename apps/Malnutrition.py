@@ -8,7 +8,7 @@ import shap # package used to calculate Shap values
 from app import app
 from urllib.request import urlopen
 import joblib # Cargar y guardar modelos sklearn
-from utils import SHAPValues
+#from utils import SHAPValues
 
 modelo_malnutrition_path = '/assets/models/Modelo_malnutrition.sav'
 #with urlopen('https://storage.googleapis.com/ds4all-test-bd1/Modelo_malnutrition.sav') as response:
