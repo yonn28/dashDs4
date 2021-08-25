@@ -6,7 +6,7 @@ import pathlib
 from app import app
 import dash_bootstrap_components as dbc
 # colombian map dependencies
-#from utils import mapcolombia
+from utils import mapcolombia
 import pandas as pd
 
 
