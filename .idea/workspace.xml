@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/SHAPValues.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/Malnutrition.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/Malnutrition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/SHAPValues.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/SHAPValues.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,7 +331,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629868114698</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Intento de cargar el modelo a través de assets">
+      <created>1629868602864</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1629868602864</updated>
+    </task>
+    <task id="LOCAL-00033" summary="just model path">
+      <created>1629868691388</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1629868691388</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +372,8 @@
     <MESSAGE value="reversión de intento de leer el modelo" />
     <MESSAGE value="SHAPValuesFile" />
     <MESSAGE value="Intento de cargar el modelo a través de assets" />
-    <option name="LAST_COMMIT_MESSAGE" value="Intento de cargar el modelo a través de assets" />
+    <MESSAGE value="just model path" />
+    <option name="LAST_COMMIT_MESSAGE" value="just model path" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dashDs4$main.coverage" NAME="main Coverage Results" MODIFIED="1629863892857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
