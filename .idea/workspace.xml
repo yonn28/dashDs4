@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="Intento de cargar el modelo 6">
+    <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="Intento de cargar el modelo 7">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/Malnutrition.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/Malnutrition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +112,8 @@
       <workItem from="1629758392936" duration="9668000" />
       <workItem from="1629786445204" duration="17015000" />
       <workItem from="1629856883602" duration="3220000" />
-      <workItem from="1629909441241" duration="313000" />
+      <workItem from="1629909441241" duration="995000" />
+      <workItem from="1629916128035" duration="1029000" />
     </task>
     <task id="LOCAL-00001" summary="Change of bootstrap theme">
       <created>1629757259244</created>
@@ -415,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629878579117</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Intento de cargar el modelo 7">
+      <created>1629909823819</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1629909823819</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +443,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Correction to Nav Bar" />
     <MESSAGE value="Title Update" />
     <MESSAGE value="Sidebar and Header update" />
     <MESSAGE value="Correction to Malnutrition.py" />
@@ -460,7 +467,8 @@
     <MESSAGE value="Intento de cargar el modelo 4" />
     <MESSAGE value="Intento de cargar el modelo 5" />
     <MESSAGE value="Intento de cargar el modelo 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Intento de cargar el modelo 6" />
+    <MESSAGE value="Intento de cargar el modelo 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Intento de cargar el modelo 7" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dashDs4$main.coverage" NAME="main Coverage Results" MODIFIED="1629863892857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
