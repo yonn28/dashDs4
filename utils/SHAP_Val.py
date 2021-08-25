@@ -49,5 +49,5 @@ def plotShapValuesTop(objeto_modelo, base_variables):
     # Shap values summary:
 
     shap.summary_plot(shap_values[1],
-                      base_variables, show=False, matplotlib=True).savefig('scratch.png')
+                      base_variables, show=False)#.savefig('scratch.png')
     # ,max_display=400) #Este parametro permite jugar con cuantas variables mostrar
