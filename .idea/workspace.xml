@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/models/Modelo_malnutrition.sav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/models/Modelo_relapse.sav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/Malnutrition.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/Malnutrition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/SHAPValues.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/SHAPValues.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -324,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629866803372</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Intento de cargar el modelo a través de assets">
+      <created>1629868114698</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1629868114698</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +356,8 @@
     <MESSAGE value="joblib e intento de leer el modelo" />
     <MESSAGE value="reversión de intento de leer el modelo" />
     <MESSAGE value="SHAPValuesFile" />
-    <option name="LAST_COMMIT_MESSAGE" value="SHAPValuesFile" />
+    <MESSAGE value="Intento de cargar el modelo a través de assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Intento de cargar el modelo a través de assets" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dashDs4$main.coverage" NAME="main Coverage Results" MODIFIED="1629863892857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
