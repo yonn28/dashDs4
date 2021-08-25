@@ -8,7 +8,6 @@ import plotly.graph_objects as go
 import plotly.io as pio
 import shap  # package used to calculate Shap values
 
-import matplotlib.pyplot as plt
 import plotly.express as px
 
 #pio.renderers.default='svg'
