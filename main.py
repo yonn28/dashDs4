@@ -2,7 +2,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
-import dash_auth
+#import dash_auth
 from app import app
 
 # Connect to app pages
@@ -83,7 +83,7 @@ def display_page(pathname):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False, host="0.0.0.0", port=8080)
+    app.run_server(debug=True)
 
 
 
