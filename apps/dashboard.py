@@ -9,7 +9,6 @@ import dash_bootstrap_components as dbc
 from utils import mapcolombia
 import pandas as pd
 
-
 # get relative data folder
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
