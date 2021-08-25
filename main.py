@@ -11,12 +11,12 @@ from apps import dashboard, form
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
-"""
+
 header = html.Div([
     html.Img(src='/assets/correlation.png')
 ], className="app_header")
-"""
 
+"""
 header = dbc.Navbar(
     [
         html.A(
@@ -34,6 +34,7 @@ header = dbc.Navbar(
     color="white",
     light=True,
 )
+"""
 
 sidebar = html.Div(
     [
