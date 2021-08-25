@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/Relapse.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/Relapse.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +101,7 @@
       <workItem from="1628993071520" duration="1858000" />
       <workItem from="1629756264555" duration="2032000" />
       <workItem from="1629758392936" duration="9668000" />
-      <workItem from="1629786445204" duration="13132000" />
+      <workItem from="1629786445204" duration="13550000" />
     </task>
     <task id="LOCAL-00001" summary="Change of bootstrap theme">
       <created>1629757259244</created>
@@ -230,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629850029044</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="correction">
+      <created>1629850542400</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1629850542400</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
