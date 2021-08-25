@@ -9,14 +9,14 @@ from app import app
 from urllib.request import urlopen
 import joblib
 #from utils import SHAPVal
-
+"""
 from io import BytesIO
 import pickle5 as pickle
 import requests
 mLink = 'https://storage.googleapis.com/ds4all-test-bd1/Modelo_malnutrition.sav'
 mfile = BytesIO(requests.get(mLink).content)
 modelo_malnutrition = pickle.load(mfile)
-
+"""
 #modelo_malnutrition_path = './assets/models/Modelo_malnutrition.sav'
 #with urlopen('https://storage.googleapis.com/ds4all-test-bd1/Modelo_malnutrition.sav') as response:
 #modelo_malnutrition = joblib.load(modelo_malnutrition_path)
