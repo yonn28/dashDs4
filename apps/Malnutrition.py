@@ -23,7 +23,7 @@ modelo_malnutrition_path = './assets/models/Modelo_malnutrition.sav'
 #modelo_malnutrition = joblib.load(modelo_malnutrition_path)
 
 base_malnutrition = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_malnutrition.csv').drop(["IdBeneficiario","Unnamed: 0","Unnamed: 0.1"],axis=1)
-modelo_malnutrition = pickle.load(modelo_malnutrition_path)
+modelo_malnutrition = pickle.load(open(modelo_malnutrition_path, 'rb'))
 #SHAP_Val.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
 
 #shap_img = '/assets/shap.png'

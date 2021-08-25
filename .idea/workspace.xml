@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="Revrev - Intento de cargar el modelo 3" />
+    <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="Intento de cargar el modelo 4">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -390,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629876708476</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Intento de cargar el modelo 4">
+      <created>1629877230256</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1629877230256</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,7 +418,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Change of map palette" />
     <MESSAGE value="Update of sidebar style (try)" />
     <MESSAGE value="Correction" />
     <MESSAGE value="Correction to Nav Bar" />
@@ -434,7 +442,8 @@
     <MESSAGE value="Rev - Intento de cargar el modelo 2" />
     <MESSAGE value="Rev - Intento de cargar el modelo 3" />
     <MESSAGE value="Revrev - Intento de cargar el modelo 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revrev - Intento de cargar el modelo 3" />
+    <MESSAGE value="Intento de cargar el modelo 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Intento de cargar el modelo 4" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dashDs4$main.coverage" NAME="main Coverage Results" MODIFIED="1629863892857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
