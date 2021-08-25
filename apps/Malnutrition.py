@@ -8,7 +8,6 @@ import shap # package used to calculate Shap values
 from app import app
 from urllib.request import urlopen
 import joblib
-import pickle5 as pickle
 #from utils import SHAPVal
 """
 from io import BytesIO
@@ -20,10 +19,9 @@ modelo_malnutrition = pickle.load(mfile)
 """
 modelo_malnutrition_path = './assets/models/Modelo_malnutrition.sav'
 #with urlopen('https://storage.googleapis.com/ds4all-test-bd1/Modelo_malnutrition.sav') as response:
-#modelo_malnutrition = joblib.load(modelo_malnutrition_path)
+modelo_malnutrition = joblib.load(modelo_malnutrition_path)
 
 base_malnutrition = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_malnutrition.csv').drop(["IdBeneficiario","Unnamed: 0","Unnamed: 0.1"],axis=1)
-modelo_malnutrition = pickle.load(open(modelo_malnutrition_path, 'rb'))
 #SHAP_Val.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
 
 #shap_img = '/assets/shap.png'
