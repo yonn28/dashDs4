@@ -6,7 +6,7 @@ import dash_auth
 from app import app
 
 # Connect to app pages
-from apps import dashboard, form
+from apps import dashboard, Malnutrition
 
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
@@ -77,7 +77,7 @@ def display_page(pathname):
     if pathname == '/apps/Dashboard':
         return dashboard.layout
     if pathname == '/apps/Malnutrition':
-        return form.layout
+        return Malnutrition.layout
     else:
         return dashboard.layout
 
