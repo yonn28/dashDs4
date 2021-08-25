@@ -48,6 +48,7 @@ six==1.16.0
 slicer==0.0.7
 statsmodels==0.12.2
 tenacity==8.0.1
+tensorflow==2.6.0
 threadpoolctl==2.2.0
 tqdm==4.62.2
 ua-parser==0.10.0
