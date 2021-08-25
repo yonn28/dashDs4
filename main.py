@@ -2,7 +2,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
-#import dash_auth
+import dash_auth
 from app import app
 
 # Connect to app pages
@@ -11,12 +11,12 @@ from apps import dashboard, form
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
-
+"""
 header = html.Div([
     html.Img(src='/assets/correlation.png')
 ], className="app_header")
-
 """
+
 header = dbc.Navbar(
     [
         html.A(
@@ -34,7 +34,6 @@ header = dbc.Navbar(
     color="white",
     light=True,
 )
-"""
 
 sidebar = html.Div(
     [
@@ -85,5 +84,6 @@ def display_page(pathname):
 
 if __name__ == '__main__':
     app.run_server(debug=False, host="0.0.0.0", port=8080)
+
 
 
