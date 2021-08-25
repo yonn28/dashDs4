@@ -21,7 +21,6 @@ geopandas==0.9.0
 idna==3.2
 itsdangerous==2.0.1
 Jinja2==3.0.1
-joblib==1.0.1
 MarkupSafe==2.0.1
 munch==2.5.0
 numpy==1.21.1
