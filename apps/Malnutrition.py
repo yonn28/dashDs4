@@ -15,7 +15,6 @@ modelo_malnutrition_path = '/assets/models/Modelo_malnutrition.sav'
 
 base_malnutrition = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_malnutrition.csv').drop(["IdBeneficiario","Unnamed: 0","Unnamed: 0.1"],axis=1)
 
-shap_fig =
 
 layout = dbc.Container([
     dbc.Row([
