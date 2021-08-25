@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="" />
+    <list default="true" id="46034338-7a4e-4f88-9075-7f2464522612" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/SHAPValues.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -306,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629865888859</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="reversión de intento de leer el modelo">
+      <created>1629866274823</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1629866274823</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +339,8 @@
     <MESSAGE value="Delete joblib" />
     <MESSAGE value="correction" />
     <MESSAGE value="joblib e intento de leer el modelo" />
-    <option name="LAST_COMMIT_MESSAGE" value="joblib e intento de leer el modelo" />
+    <MESSAGE value="reversión de intento de leer el modelo" />
+    <option name="LAST_COMMIT_MESSAGE" value="reversión de intento de leer el modelo" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dashDs4$main.coverage" NAME="main Coverage Results" MODIFIED="1629863892857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
