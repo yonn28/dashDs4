@@ -9,17 +9,7 @@ import dash_bootstrap_components as dbc
 #from utils import mapcolombia
 import pandas as pd
 
-layout = dbc.Container([
-    dbc.Row([
-    html.Img(src='/assets/happychildren.jpg', height="200px"),
-    ], align="center",
-    ),
-    dbc.Row([
 
-    ]),
-])
-
-"""
 # get relative data folder
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("../datasets").resolve()
@@ -74,4 +64,3 @@ def graph_map_per_year(year=2018):
                                   )
     figmap.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
     return figmap
-"""
