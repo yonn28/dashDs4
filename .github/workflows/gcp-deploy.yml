@@ -3,7 +3,7 @@ name: Deploy GCP
 
 on:
   push:
-    branches: [ test]
+    branches: [ main]
 
 jobs:
   deploy:
