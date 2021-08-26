@@ -46,3 +46,24 @@ it's expose at 8080 port in localhost
 
 https://medium.com/google-cloud/how-to-deploy-your-cloud-run-service-using-github-actions-e5b6a6f597a3
 
+### for setting a debugger please follow the instructions
+
+## configure launcher and with remote launcher as the following link
+https://code.visualstudio.com/docs/python/debugging
+
+### or see the config in this repo 
+
+### use the following command to download the debugger
+python -m pip install --upgrade debugpy
+### import the library from
+import debugpy
+#### configure put this lines at your code init luncher
+    debugpy.listen(5678)
+    print("Waiting for debugger attach")
+    debugpy.wait_for_client()
+#### configure put this lines at the end you debugger luncher
+    debugpy.breakpoint()
+    print('break on this line')
+
+#### execute the following code
+python -m debugpy --listen 0.0.0.0:5678 main.py 

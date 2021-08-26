@@ -10,9 +10,13 @@ import plotly.express as px
 
 #pio.renderers.default='svg'
 pio.renderers.default = 'browser'
+import debugpy
 
 def plotShapValuesTop(objeto_modelo, base_variables):
     # Create a new column with the predicted probability:
+    debugpy.listen(5678)
+    print("Waiting for debugger attach")
+    debugpy.wait_for_client()
 
     base_variables.loc[:, "Probability"] = objeto_modelo.predict_proba(base_variables)[:, 1]
 
@@ -42,6 +46,8 @@ def plotShapValuesTop(objeto_modelo, base_variables):
     # Calculate Shap values
 
     shap_values = explainer.shap_values(base_variables)
+    debugpy.breakpoint()
+    print('break on this line')
 
     # Shap values summary:
 
