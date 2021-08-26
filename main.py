@@ -45,7 +45,7 @@ sidebar = html.Div(
                 html.P("CHILDREN AT RISK", className='text-p'),
                 dbc.NavLink('Malnutrition', href='/apps/Malnutrition', active="exact"),
                 #dbc.NavLink('Relapse', href='/apps/Relapse', active="exact"),
-                #dbc.NavLink('Prediction Tool', href='/apps/PredicTool', active="exact"),
+                dbc.NavLink('Prediction Tool', href='/apps/PredicTool', active="exact"),
                 #dbc.NavLink('About Us', href='/apps/About', active="exact"),
             ],
             vertical=True,
