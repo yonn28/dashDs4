@@ -22,6 +22,6 @@ SHAP_Val.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
 
 layout = dbc.Container([
     dbc.Row([
-        dbc.Col(html.Img(src='/assets/long_child.jpg', height="200px")),
+        dbc.Col(html.Img(src='/assets/long_child.jpg', height="200px"))
     ])
 ])
