@@ -5,7 +5,6 @@ WORKDIR $APP_HOME
 COPY . ./
 
 RUN python -m pip install -r requirements.txt
-RUN pip install -U numpy 
 
 EXPOSE 8080
 
