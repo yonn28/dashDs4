@@ -32,23 +32,27 @@ controlsMap = dbc.Card(
 )
 
 layout = html.Div([
-    dbc.Row(
+    dbc.Row([
         dbc.Col(
-            html.H4("Colombian map by years"),
-            html.Div(controlsMap),
-            html.Div(
-                dcc.Graph(
-                    id='colombia_plot',
-                    figure=figmap
+            html.Div([
+                html.H4("Colombian map by years"),
+                html.Div(controlsMap),
+                html.Div(
+                    dcc.Graph(
+                        id='colombia_plot',
+                        figure=figmap
+                    )
                 )
-            )
-        ), width = 6
+            ]), width = 6
+        )
+    ]
     ),
-    dbc.Row(
+    dbc.Row([
         dcc.Graph(
             id='years_dist_plot',
             figure=fig_years_dist
         )
+      ]
     )
 ])
 
