@@ -22,8 +22,9 @@ controlsMap = dbc.Card(
             [
                 dbc.Label('year'),
                 dcc.Dropdown(
-                    id='year',
-                    options=[{'value': i, 'label': i} for i in dpts_count['anno_encuesta_x'].unique()]
+                    id = 'year',
+                    options = [{'value': i, 'label': i} for i in dpts_count['anno_encuesta_x'].unique()],
+                    values = dpts_count['anno_encuesta_x'].unique()[0]
                 ),
             ]
         )
