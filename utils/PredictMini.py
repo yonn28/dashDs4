@@ -156,8 +156,3 @@ def plotShapValues(objeto_modelo,base_variables):
 
 def obtenerProbabilidad(objeto_modelo,base_variables):
     return(objeto_modelo.predict_proba(base_variables)[:,1])
-
-    
-# Ejemplo de como usarla:
-
-print(obtenerProbabilidad(modelo_relapse,base_variables))

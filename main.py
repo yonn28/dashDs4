@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output, State
 from app import app
 
 # Connect to app pages
-from apps import dashboard, Malnutrition
+from apps import dashboard, Malnutrition, PredicTool
 
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
@@ -78,6 +78,8 @@ def display_page(pathname):
         return dashboard.layout
     if pathname == '/apps/Malnutrition':
         return Malnutrition.layout
+    if pathname == '/apps/PredicTool':
+        return PredicTool.layout
     else:
         return dashboard.layout
 
