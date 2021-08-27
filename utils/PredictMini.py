@@ -1,35 +1,20 @@
 # -*- coding: utf-8 -*-
-"""
-
-Creado el 23/08/21
-
-
-"""
-
-'''
-
-1. Librerias
-
-'''
-
 #Tratamiento de datos:
-
 import pandas as pd
-
 # Cargar y guardar modelos sklearn:
-
 import joblib
-
 # Visualization:
-
 import plotly.graph_objects as go
 import plotly.io as pio
 import shap  # package used to calculate Shap values
-
 import matplotlib.pyplot as plt
-
+# Extra tools for visualization in the web app
+import io
+import base64
 #pio.renderers.default='svg'
 pio.renderers.default = 'browser'
+
+
 
 '''
 
@@ -140,11 +125,14 @@ def plotShapValues(objeto_modelo,base_variables):
 
     # Shap values summary:
 
-    plt.figure(0)
-
+    #plt.figure(0)
+    buf = io.BytesIO()
     shap.plots._waterfall.waterfall_legacy(explainer.expected_value[1], shap_values[1][0],feature_names = base_variables.columns,show=True)
     #shap.plots.force(explainer.expected_value[1], shap_values[1][0],feature_names = base_variables.columns,matplotlib=True,show=False,features=base_variables)
-
+    plt.savefig(buf, format="png", dpi=150, bbox_inches='tight')  # save to the above file object
+    plt.close()
+    data = base64.b64encode(buf.getbuffer()).decode("utf8")  # encode to html elements
+    return "data:image/png;base64,{}".format(data)
     
 
 
