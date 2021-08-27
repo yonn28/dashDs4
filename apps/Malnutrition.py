@@ -15,7 +15,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 
 with urlopen('https://storage.googleapis.com/ds4all-test-bd1/Modelo_malnutrition.sav') as response:
-    modelo_malnutrition = joblib.load(response)
+     modelo_malnutrition = joblib.load(response)
 
 base_malnutrition = pd.read_csv('https://storage.googleapis.com/ds4all-test-bd1/base_malnutrition.csv').drop(["IdBeneficiario","Unnamed: 0","Unnamed: 0.1"],axis=1)
 
