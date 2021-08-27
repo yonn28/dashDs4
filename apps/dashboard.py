@@ -31,26 +31,39 @@ controlsMap = dbc.Card(
     body=True,
 )
 
+card_map = dbc.Card(
+    dbc.CardBody([    
+        html.H4("Colombian map by years"),
+        html.Div(controlsMap),
+        html.Div(
+            dcc.Graph(
+                id='colombia_plot',
+                figure=figmap
+            )
+        )     
+    ])
+)
+
+card_graph_distribution = dbc.Card([
+    dbc.CardBody([
+        dcc.Graph(
+            id='years_dist_plot',
+            figure=fig_years_dist
+        )
+    ])
+])
+
+
 layout = html.Div([
     dbc.Row([
         dbc.Col(
-            html.Div([
-                html.H4("Colombian map by years"),
-                html.Div(controlsMap),
-                html.Div(
-                    dcc.Graph(
-                        id='colombia_plot',
-                        figure=figmap
-                    )
-                )
-            ]), width = 6
+            card_map, width = 6
         )
     ]
     ),
     dbc.Row([
-        dcc.Graph(
-            id='years_dist_plot',
-            figure=fig_years_dist
+        dbc.Col(
+            card_graph_distribution, width = 12
         )
       ]
     )
