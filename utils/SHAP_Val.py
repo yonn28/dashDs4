@@ -8,7 +8,6 @@ import plotly.express as px
 #pio.renderers.default='svg'
 pio.renderers.default = 'browser'
 
-
 def plotShapValuesTop(objeto_modelo, base_variables):
     base_variables = base_variables.drop("Range_probability", axis=1)
     base_variables = base_variables.drop("Probability", axis=1)
@@ -23,7 +22,7 @@ def plotShapValuesTop(objeto_modelo, base_variables):
     explainer = shap.TreeExplainer(objeto_modelo)
 
     # Calculate Shap values
-
+    
     shap_values = explainer.shap_values(base_variables)
 
     # Shap values summary:

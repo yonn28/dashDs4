@@ -44,9 +44,8 @@ valores = {"AVG_ZScorePesoTalla_12M":-2.5,
 '''
 
 base_variables = PredictMini.convertirDicEnBase(valores)
-PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
+img = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
 print(PredictMini.obtenerProbabilidad(Modelo_relapse_subset,base_variables))
-
 
 
 layout = dbc.Container([
@@ -55,5 +54,7 @@ layout = dbc.Container([
     ], align="center",
     ),
     dbc.Row([
-    ]),
-])
+        dbc.Col(html.Img(src=img, height="550px"), style={"margin-top": "20px"})
+    ], align="center",
+    )
+], fluid=True)
