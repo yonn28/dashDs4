@@ -1,32 +1,15 @@
-#Tratamiento de datos:
-import pandas as pd
-import joblib # Cargar y guardar modelos sklearn:
-
-# Visualization:
-import plotly.graph_objects as go
 import plotly.io as pio
 import shap  # package used to calculate Shap values
+import matplotlib.pyplot as plt
+import io
+import base64
 import plotly.express as px
 
 #pio.renderers.default='svg'
 pio.renderers.default = 'browser'
 
+
 def plotShapValuesTop(objeto_modelo, base_variables):
-    # Create a new column with the predicted probability:
-
-    base_variables.loc[:, "Probability"] = objeto_modelo.predict_proba(base_variables)[:, 1]
-
-    # Create a column with the range of the probability:
-
-    base_variables.loc[:, "Range_probability"] = pd.qcut(base_variables['Probability'], q=10, precision=0,
-                                                         duplicates='drop')
-
-    # Top 10%
-
-    a = pd.DataFrame(base_variables.groupby(["Range_probability"]).size().reset_index()).rename(columns={0: 'Total'})
-    buscado = a.loc[9, "Range_probability"]
-
-    base_variables = base_variables[base_variables["Range_probability"] == buscado]
     base_variables = base_variables.drop("Range_probability", axis=1)
     base_variables = base_variables.drop("Probability", axis=1)
 
@@ -44,8 +27,10 @@ def plotShapValuesTop(objeto_modelo, base_variables):
     shap_values = explainer.shap_values(base_variables)
 
     # Shap values summary:
-
+    buf = io.BytesIO()
     shap.summary_plot(shap_values[1],
-                      base_variables, show=False)
-    plt.savefig('shap.png')
-    # ,max_display=400) #Este parametro permite jugar con cuantas variables mostrar
+                             base_variables, show=False)
+    plt.savefig(buf, format="png", dpi=150, bbox_inches='tight')  # save to the above file object
+    plt.close()
+    data = base64.b64encode(buf.getbuffer()).decode("utf8")  # encode to html elements
+    return "data:image/png;base64,{}".format(data)
