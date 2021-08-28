@@ -127,7 +127,7 @@ def plotShapValues(objeto_modelo,base_variables):
 
     #plt.figure(0)
     buf = io.BytesIO()
-    shap.plots._waterfall.waterfall_legacy(explainer.expected_value[1], shap_values[1][0],feature_names = base_variables.columns,show=True)
+    shap.plots._waterfall.waterfall_legacy(explainer.expected_value[1], shap_values[1][0],feature_names = base_variables.columns,show=False)
     #shap.plots.force(explainer.expected_value[1], shap_values[1][0],feature_names = base_variables.columns,matplotlib=True,show=False,features=base_variables)
     plt.savefig(buf, format="png", dpi=150, bbox_inches='tight')  # save to the above file object
     plt.close()
