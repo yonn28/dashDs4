@@ -19,16 +19,16 @@ with urlopen('https://storage.googleapis.com/base_final_cloud/Modelo_relapse_sub
 
 #SHAP_Val.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
 
-valores = {"AVG_ZScorePesoTalla_12M":-2.5,
-           "MAX_ZScorePesoTalla_12M":-1.0,
-           "Veces_DesnutricionSM_12M":3.0,
-           "Veces_SobrePeso_12M":0.0,
-           "MIN_ZScorePesoTalla_12M":-3.0, #
-           "tip_cuidado_niños":1, #Mas adelante
-           "ind_discap":"ninguna", #ninguna o si
-           "ind_leer_escribir":1.0, #Posibles valores 1:si 2:no
-           "ind_estudia":0.0, #Posibles valores 1: si 2:no
-           "ind_recibe_comida":0.0} #osibles valores 1:si 2:no
+valores = {"AVG_ZScorePesoTalla_12M":-2.5, #[-3,3] --> Slider float
+           "MAX_ZScorePesoTalla_12M":-1.0, #[-3,3] --> Slider float
+           "Veces_DesnutricionSM_12M":3.0, # 0 en adelante --> Slider enteros positivos
+           "Veces_SobrePeso_12M":0.0, # 0 en adelante --> Slider enteros positivos
+           "MIN_ZScorePesoTalla_12M":-3.0, # [-3,3] --> Slider float
+           "tip_cuidado_niños":1, #Mas adelante --> Dropdown
+           "ind_discap":"ninguna", #ninguna o si --> Switch
+           "ind_leer_escribir":1.0, #Posibles valores 1:si 2:no  --> Switch
+           "ind_estudia":0.0, #Posibles valores 1: si 2:no --> Switch
+           "ind_recibe_comida":0.0} #osibles valores 1:si 2:no --> Switch
 
 '''
 
@@ -45,16 +45,76 @@ valores = {"AVG_ZScorePesoTalla_12M":-2.5,
 
 base_variables = PredictMini.convertirDicEnBase(valores)
 img = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
-print(PredictMini.obtenerProbabilidad(Modelo_relapse_subset,base_variables))
+#print(PredictMini.obtenerProbabilidad(Modelo_relapse_subset,base_variables))
 
 
-layout = dbc.Container([
-    dbc.Row([
-    html.Img(src='/assets/happychildren.jpg', height="200px"),
-    ], align="center",
-    ),
-    dbc.Row([
-        dbc.Col(html.Img(src=img, height="550px"), style={"margin-top": "20px"})
-    ], align="center",
+
+
+cards = dbc.Card(
+            dbc.CardBody(
+                [
+                dbc.CardDeck(
+                [
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                html.H5("Card 1", className="card-title"),
+                                html.P(
+                                    "This card has some text content, which is a little "
+                                    "bit longer than the second card.",
+                                    className="card-text",
+                                ),
+                                dbc.Button(
+                                    "Click here", color="success", className="mt-auto"
+                                ),
+                            ]
+                        ), color="primary", outline=True
+                    ),
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                html.H5("Card 2", className="card-title"),
+                                html.P(
+                                    "This card has some text content.",
+                                    className="card-text",
+                                ),
+                                dbc.Button(
+                                    "Click here", color="warning", className="mt-auto"
+                                ),
+                            ]
+                        ), color="primary", outline=True
+                    ),
+                ]
+            )
+        ],
     )
-], fluid=True)
+)
+
+description_short_SHAP = dbc.Alert(
+            [
+                "This is a primary alert with an ",
+                html.A("example link", href="#", className="alert-link"),
+            ],
+            color="primary",
+        )
+
+
+layout = dbc.Container(
+    [#dbc.Container([
+        html.H1('Prediction tool for individuals'),
+        dbc.Row([
+            html.Img(src='/assets/happychildren.jpg', height="200px"),
+            ], justify="center",#align="center", 
+        ),
+        dbc.Row([
+            cards
+            ], style={"margin-top": "20px"}, justify="center",
+        ),
+        dbc.Row([
+            dbc.Col(html.Img(src=img, height="275px"), className="text-center"), #
+            dbc.Col(dbc.Card(description_short_SHAP, color="primary", outline=True)),
+            ], style={"margin-top": "20px"}, justify="center",#align="center",
+            
+        )
+    ],fluid=True #className="container-fluid"
+)
