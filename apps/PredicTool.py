@@ -4,7 +4,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
-#import shap # package used to calculate Shap values
+import numpy as np
 from utils import PredictMini
 from app import app
 from urllib.request import urlopen
@@ -68,7 +68,7 @@ child_care_opt = ["Attends a community place, kindergarten, child development ce
 drop_child_care = dbc.FormGroup(
     [
         #html.
-        dbc.Label("Children care type", html_for="dropdown", className="float-left ml-1"),
+        dbc.Label("Children care type", html_for="ch_care", className="label_selector"),
         dbc.Col([
             dcc.Dropdown(
                 id="ch_care",
@@ -87,7 +87,7 @@ drop_child_care = dbc.FormGroup(
 drop_model = dbc.FormGroup(
     [
         #html.
-        dbc.Label("Model", html_for="dropdown", className="float-left ml-1"),
+        dbc.Label("Model", html_for="model", className="label_selector"),
         dbc.Col([
             dcc.Dropdown(
                 id="model",
@@ -102,6 +102,109 @@ drop_model = dbc.FormGroup(
     #className="mr-5",
 )
 
+#{i : str(i) for i in np.linspace(-3.0,3.0,num=int((6/0.01)+1))}
+#style={"font-size":"0.8125rem","font-weight":"bold"}
+slider_min_z = dbc.FormGroup(
+    [
+        dbc.Label("Min. Z-score weight-height:", html_for="slider-min-z",
+             width=4, className="label_selector" , align="center"),
+        dbc.Col(
+            dcc.Slider(
+                id='slider-min-z',
+                min=-3,
+                max=3,
+                step=0.01,
+                marks={int(i) : str(i) for i in np.linspace(-3.0,3.0,num=int((6/1)+1))},
+                value=0,
+                tooltip= {"always_visible":True,"placement":"top"},
+            ),
+            width=8, align="center"
+        ),
+    ],
+    row=True,
+)
+
+slider_max_z = dbc.FormGroup(
+    [
+        dbc.Label("Max. Z-score weight-height:", html_for="slider-max-z",
+             width=4, className="label_selector" , align="center"),
+        dbc.Col(
+            dcc.Slider(
+                id='slider-max-z',
+                min=-3,
+                max=3,
+                step=0.01,
+                marks={int(i) : str(i) for i in np.linspace(-3.0,3.0,num=int((6/1)+1))},
+                value=0,
+                tooltip= {"always_visible":True,"placement":"top"},
+            ),
+            width=8, align="center"
+        ),
+    ],
+    row=True,
+)
+
+slider_avg_z = dbc.FormGroup(
+    [
+        dbc.Label("Avg. Z-score weight-height:", html_for="slider-avg-z",
+             width=4, className="label_selector" , align="center"),
+        dbc.Col(
+            dcc.Slider(
+                id='slider-avg-z',
+                min=-3,
+                max=3,
+                step=0.01,
+                marks={int(i) : str(i) for i in np.linspace(-3.0,3.0,num=int((6/1)+1))},
+                value=0,
+                tooltip= {"always_visible":True,"placement":"top"},
+            ),
+            width=8, align="center"
+        ),
+    ],
+    row=True,
+)
+
+
+slider_under = dbc.FormGroup(
+    [
+        dbc.Label("Undernutrition times:", html_for="slider-under",
+             width=4, className="label_selector" , align="center"),
+        dbc.Col(
+            dcc.Slider(
+                id='slider-under',
+                min=0,
+                max=12,
+                step=1,
+                marks={int(i) : str(i) for i in range(13)},
+                value=0,
+                tooltip= {"always_visible":True,"placement":"top"},
+            ),
+            width=8, align="center"
+        ),
+    ],
+    row=True,
+)
+
+slider_over = dbc.FormGroup(
+    [
+        dbc.Label("Undernutrition times:", html_for="slider-over",
+             width=4, className="label_selector" , align="center"),
+        dbc.Col(
+            dcc.Slider(
+                id='slider-over',
+                min=0,
+                max=12,
+                step=1,
+                marks={int(i) : str(i) for i in range(13)},
+                value=0,
+                tooltip= {"always_visible":True,"placement":"top"},
+            ),
+            width=8, align="center"
+        ),
+    ],
+    row=True,
+)
+
 
 # Section where the user type the variables' values
 selectors = html.Div([
@@ -109,7 +212,7 @@ selectors = html.Div([
                 dbc.Alert(["If you select ",
                              html.Em("Relapse model"),
                             ", we assume that the child already had malnutrition."], color="success"),
-                
+                drop_model,
                 #dbc.Row([
                     #dbc.Col([
                         #dbc.Form([           
@@ -117,12 +220,17 @@ selectors = html.Div([
                         #],),#inline=True),
                     #]),
                 #]),
-                drop_model,
+                
                 html.P(
                     "Answer the following questions with respect "
                     "to the past 12 months.",
                     className="card-text",
                 ),
+                slider_min_z,
+                slider_max_z,
+                slider_avg_z,
+                slider_under,
+                slider_over,
                 dbc.Button(
                     "Click here", color="success", className="mt-auto"
                 ),
