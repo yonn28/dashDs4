@@ -17,6 +17,9 @@ ssl._create_default_https_context = ssl._create_unverified_context
 with urlopen('https://storage.googleapis.com/base_final_cloud/Modelo_relapse_subset.sav') as response:
     Modelo_relapse_subset = joblib.load(response)
 
+with urlopen('https://storage.googleapis.com/base_final_cloud/Modelo_malnutrition_subset.sav') as response:
+    Modelo_malnutrition_subset = joblib.load(response)
+
 #SHAP_Val.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
 
 valores = {"AVG_ZScorePesoTalla_12M":-2.5, #[-3,3] --> Slider float
@@ -43,14 +46,94 @@ valores = {"AVG_ZScorePesoTalla_12M":-2.5, #[-3,3] --> Slider float
 9-No aplica por flujo
 '''
 
+# Data processing: Calculate SHAP values and brings the image
 base_variables = PredictMini.convertirDicEnBase(valores)
-img = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
+img, shap_values = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
 #print(PredictMini.obtenerProbabilidad(Modelo_relapse_subset,base_variables))
 
+features = ["AVG_ZScorePesoTalla_12M","MAX_ZScorePesoTalla_12M","Veces_DesnutricionSM_12M",
+            "Veces_SobrePeso_12M","MIN_ZScorePesoTalla_12M"]
+
+# Prob. predicted for the model
+prob = 0.5 + shap_values[1][0].sum()
+
+# List of child care categories
+child_care_opt = ["Attends a community place, kindergarten, child development center or school.",
+"With his or her parent at home", "With parent at work", "With maid or nanny at home",
+"In the care of a relative 18 years of age or older", "In the care of a relative under 18 years of age",
+"At home alone","Not applicable by flow"]
+
+
+# Dropdown child-care
+drop_child_care = dbc.FormGroup(
+    [
+        #html.
+        dbc.Label("Children care type", html_for="dropdown", className="float-left ml-1"),
+        dbc.Col([
+            dcc.Dropdown(
+                id="ch_care",
+                options=[{'value': i+1, 'label': care_opt} for i, care_opt in enumerate(child_care_opt)],
+                value=1,
+                #className="container-fluid"
+            ),
+        ], ),#className="lg-auto",),
+    ],
+    #row=True,
+    #inline=True,
+    #className="mr-5",
+)
+
+# Dropdown to select the model
+drop_model = dbc.FormGroup(
+    [
+        #html.
+        dbc.Label("Model", html_for="dropdown", className="float-left ml-1"),
+        dbc.Col([
+            dcc.Dropdown(
+                id="model",
+                options=[{'value': "0", 'label': "Malnutrition"}, {'value': "1", 'label': "Relapse"}],
+                value=0,
+                #className="container-fluid"
+            ),
+        ], ),#className="lg-auto",),
+    ],
+    #row=True,
+    #inline=True,
+    #className="mr-5",
+)
+
+
+# Section where the user type the variables' values
+selectors = html.Div([
+                html.H5("Select all parameters that apply", className="card-title"),
+                dbc.Alert(["If you select ",
+                             html.Em("Relapse model"),
+                            ", we assume that the child already had malnutrition."], color="success"),
+                
+                #dbc.Row([
+                    #dbc.Col([
+                        #dbc.Form([           
+                            drop_child_care,
+                        #],),#inline=True),
+                    #]),
+                #]),
+                drop_model,
+                html.P(
+                    "Answer the following questions with respect "
+                    "to the past 12 months.",
+                    className="card-text",
+                ),
+                dbc.Button(
+                    "Click here", color="success", className="mt-auto"
+                ),
+
+])
 
 
 
-cards = dbc.Card(
+
+# Middle-section of the page - Predictor
+prediction_cards = dbc.Card(
             dbc.CardBody(
                 [
                 dbc.CardDeck(
@@ -58,15 +141,7 @@ cards = dbc.Card(
                     dbc.Card(
                         dbc.CardBody(
                             [
-                                html.H5("Card 1", className="card-title"),
-                                html.P(
-                                    "This card has some text content, which is a little "
-                                    "bit longer than the second card.",
-                                    className="card-text",
-                                ),
-                                dbc.Button(
-                                    "Click here", color="success", className="mt-auto"
-                                ),
+                                selectors,
                             ]
                         ), color="primary", outline=True
                     ),
@@ -74,12 +149,15 @@ cards = dbc.Card(
                         dbc.CardBody(
                             [
                                 html.H5("Card 2", className="card-title"),
+                                dbc.Alert(("Prediction of the probability that an inmate re-offends a second time." 
+                                "Please modify the parameters on the left and then press Run predictor to obtain the"
+                                "prediction."), color="success"),
                                 html.P(
                                     "This card has some text content.",
                                     className="card-text",
                                 ),
                                 dbc.Button(
-                                    "Click here", color="warning", className="mt-auto"
+                                    "Run predictor", color="warning", className="mt-auto"
                                 ),
                             ]
                         ), color="primary", outline=True
@@ -90,31 +168,84 @@ cards = dbc.Card(
     )
 )
 
+
+text_short_SHAP_1 = (("What you see on the left side is a waterfall plot visualizing "
+"SHAP values for each model feature. Feature values in"), html.Span(" pink ", style={"color": "#f8026a"}),
+("cause an increase in the "
+"final prediction (Relapse probability/malnutrition probability). In contrast, feature "
+"values in blue cause a decrease in the final prediction. Size of the bar shows the "
+"magnitude of the feature's effect. A larger bar means that the corresponding feature "
+"has larger impact. The sum of all feature shap values explains why model prediction "
+"was different from the baseline."))
+
+text_short_SHAP_2 = (f"Model predicted {prob:.3f} (Relapse in malnutrition), whereas the base_value is 0.5. Biggest "
+"effect is caused by the children being classified 3 times with malnutrition in the past "
+"12 months; This has increased his chances of a relapse significatively. This same effect " 
+"is caused by having an average ZScorePesoTalla of X, and… (asi con c/u?). In contrast, "
+"the fact that the children is studying decreases the final probability. ")
+
 description_short_SHAP = dbc.Alert(
-            [
-                "This is a primary alert with an ",
+            [   
+                html.P(text_short_SHAP_1),
+                html.P(text_short_SHAP_2),
                 html.A("example link", href="#", className="alert-link"),
+                #html.B(red, style:"red")
             ],
-            color="primary",
+            color="dark",
         )
 
 
+
+# Bottom-section of the page - SHAP values visualization and their interpretation  
+Shap_cards = dbc.Card(
+            dbc.CardBody(
+                [
+                dbc.CardDeck(
+                [
+                    dbc.Card([
+                        dbc.CardImg(src=img,bottom=True),
+                        dbc.CardBody(
+                            
+                                html.P("SHAP values summary", className="card-text"),
+                                #html.Img(src=img, height="275px"),
+                        )
+                    ], color="primary", outline=True),
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                html.P(description_short_SHAP,className="text-justify"),
+                            ]
+                        ), color="primary", outline=True, 
+                    ),
+                ]
+            )
+        ],
+    )
+)
+
+
+
+
+# Layout
 layout = dbc.Container(
     [#dbc.Container([
         html.H1('Prediction tool for individuals'),
         dbc.Row([
-            html.Img(src='/assets/happychildren.jpg', height="200px"),
+            #html.Img(src='/assets/happychildren.jpg', height="200px"),
             ], justify="center",#align="center", 
         ),
         dbc.Row([
-            cards
+            prediction_cards
             ], style={"margin-top": "20px"}, justify="center",
         ),
         dbc.Row([
-            dbc.Col(html.Img(src=img, height="275px"), className="text-center"), #
-            dbc.Col(dbc.Card(description_short_SHAP, color="primary", outline=True)),
-            ], style={"margin-top": "20px"}, justify="center",#align="center",
-            
-        )
+            #dbc.Col(html.Img(src=img, height="275px"), className="text-center"), #
+            #dbc.Col(dbc.Card(description_short_SHAP, color="primary", outline=True)),
+            Shap_cards,
+            ], style={"margin-top": "20px"}, justify="center",#align="center",   
+        ),
     ],fluid=True #className="container-fluid"
 )
+
+
+# Callbacks

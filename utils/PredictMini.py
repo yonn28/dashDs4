@@ -132,7 +132,7 @@ def plotShapValues(objeto_modelo,base_variables):
     plt.savefig(buf, format="png", dpi=150, bbox_inches='tight')  # save to the above file object
     plt.close()
     data = base64.b64encode(buf.getbuffer()).decode("utf8")  # encode to html elements
-    return "data:image/png;base64,{}".format(data)
+    return ("data:image/png;base64,{}".format(data), shap_values)
     
 
 
