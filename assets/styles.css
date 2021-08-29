@@ -115,3 +115,8 @@ a:hover{
     margin-left: 70px;
     margin-right: 3rem;
 } */
+
+.label_selector{
+    font-size:0.8125rem;
+    font-weight: bold;
+}
