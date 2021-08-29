@@ -64,30 +64,11 @@ child_care_opt = ["Attends a community place, kindergarten, child development ce
 "At home alone","Not applicable by flow"]
 
 
-# Dropdown child-care
-drop_child_care = dbc.FormGroup(
-    [
-        #html.
-        dbc.Label("Children care type", html_for="ch_care", className="label_selector"),
-        dbc.Col([
-            dcc.Dropdown(
-                id="ch_care",
-                options=[{'value': i+1, 'label': care_opt} for i, care_opt in enumerate(child_care_opt)],
-                value=1,
-                #className="container-fluid"
-            ),
-        ], ),#className="lg-auto",),
-    ],
-    #row=True,
-    #inline=True,
-    #className="mr-5",
-)
-
 # Dropdown to select the model
 drop_model = dbc.FormGroup(
     [
         #html.
-        dbc.Label("Model", html_for="model", className="label_selector"),
+        dbc.Label("Model", html_for="model", className="label_selector", width=3),
         dbc.Col([
             dcc.Dropdown(
                 id="model",
@@ -95,12 +76,33 @@ drop_model = dbc.FormGroup(
                 value=0,
                 #className="container-fluid"
             ),
-        ], ),#className="lg-auto",),
+        ], width=9, align="center"),#className="lg-auto",),
     ],
-    #row=True,
+    row=True,
     #inline=True,
     #className="mr-5",
 )
+
+# Dropdown child-care
+drop_child_care = dbc.FormGroup(
+    [
+        #html.
+        dbc.Label("Children care type", html_for="ch_care", className="label_selector", width=3),
+        dbc.Col([
+            dcc.Dropdown(
+                id="ch_care",
+                options=[{'value': i+1, 'label': care_opt} for i, care_opt in enumerate(child_care_opt)],
+                value=1,
+                #className="container-fluid"
+            ),
+        ], width=9, align="center"),#className="lg-auto",),
+    ],
+    row=True,
+    #inline=True,
+    #className="mr-5",
+)
+
+
 
 #{i : str(i) for i in np.linspace(-3.0,3.0,num=int((6/0.01)+1))}
 #style={"font-size":"0.8125rem","font-weight":"bold"}
@@ -117,17 +119,18 @@ slider_min_z = dbc.FormGroup(
                 marks={int(i) : str(i) for i in np.linspace(-3.0,3.0,num=int((6/1)+1))},
                 value=0,
                 tooltip= {"always_visible":True,"placement":"top"},
+                #className="pt-0"
             ),
             width=8, align="center"
         ),
     ],
-    row=True,
+    row=True, className="mb-0 ml-0",
 )
 
 slider_max_z = dbc.FormGroup(
     [
         dbc.Label("Max. Z-score weight-height:", html_for="slider-max-z",
-             width=4, className="label_selector" , align="center"),
+             width=12, className="label_selector" , align="center"),
         dbc.Col(
             dcc.Slider(
                 id='slider-max-z',
@@ -138,16 +141,16 @@ slider_max_z = dbc.FormGroup(
                 value=0,
                 tooltip= {"always_visible":True,"placement":"top"},
             ),
-            width=8, align="center"
+            width=12, align="center"
         ),
-    ],
-    row=True,
+    ], className="mb-0",
+    #row=True,
 )
 
 slider_avg_z = dbc.FormGroup(
     [
         dbc.Label("Avg. Z-score weight-height:", html_for="slider-avg-z",
-             width=4, className="label_selector" , align="center"),
+             width=12, className="label_selector" , align="center"),
         dbc.Col(
             dcc.Slider(
                 id='slider-avg-z',
@@ -158,17 +161,17 @@ slider_avg_z = dbc.FormGroup(
                 value=0,
                 tooltip= {"always_visible":True,"placement":"top"},
             ),
-            width=8, align="center"
+            width=12, align="center"
         ),
-    ],
-    row=True,
+    ], className="mb-0",
+    #row=True,
 )
 
 
 slider_under = dbc.FormGroup(
     [
         dbc.Label("Undernutrition times:", html_for="slider-under",
-             width=4, className="label_selector" , align="center"),
+             width=12, className="label_selector" , align="center"),
         dbc.Col(
             dcc.Slider(
                 id='slider-under',
@@ -177,18 +180,18 @@ slider_under = dbc.FormGroup(
                 step=1,
                 marks={int(i) : str(i) for i in range(13)},
                 value=0,
-                tooltip= {"always_visible":True,"placement":"top"},
+                #tooltip= {"always_visible":True,"placement":"top"},
             ),
-            width=8, align="center"
+            width=12, align="center"
         ),
     ],
-    row=True,
+    #row=True,
 )
 
 slider_over = dbc.FormGroup(
     [
-        dbc.Label("Undernutrition times:", html_for="slider-over",
-             width=4, className="label_selector" , align="center"),
+        dbc.Label("Overweight times:", html_for="slider-over",
+             width=12, className="label_selector" , align="center"),
         dbc.Col(
             dcc.Slider(
                 id='slider-over',
@@ -197,12 +200,12 @@ slider_over = dbc.FormGroup(
                 step=1,
                 marks={int(i) : str(i) for i in range(13)},
                 value=0,
-                tooltip= {"always_visible":True,"placement":"top"},
+                #tooltip= {"always_visible":True,"placement":"top"},
             ),
-            width=8, align="center"
+            width=12, align="center"
         ),
     ],
-    row=True,
+    #row=True,
 )
 
 
@@ -210,9 +213,14 @@ slider_over = dbc.FormGroup(
 selectors = html.Div([
                 html.H5("Select all parameters that apply", className="card-title"),
                 dbc.Alert(["If you select ",
-                             html.Em("Relapse model"),
-                            ", we assume that the child already had malnutrition."], color="success"),
+                             html.Em("\"Relapse\""),
+                            " model, we assume that the child already had malnutrition."], color="success"),
                 drop_model,
+                html.P(
+                    "Answer the following questions with respect "
+                    "to the past 12 months.",
+                    className="card-text",
+                ),
                 #dbc.Row([
                     #dbc.Col([
                         #dbc.Form([           
@@ -221,16 +229,34 @@ selectors = html.Div([
                     #]),
                 #]),
                 
-                html.P(
-                    "Answer the following questions with respect "
-                    "to the past 12 months.",
-                    className="card-text",
-                ),
+                
                 slider_min_z,
-                slider_max_z,
-                slider_avg_z,
-                slider_under,
-                slider_over,
+                dbc.Row(
+                [
+                    dbc.Col(
+                        slider_max_z,
+                     width=6,),
+                     dbc.Col(
+                        slider_avg_z,
+                     width=6,),
+                ],
+                form=True, align="start", className="mb-0 pt-0",
+                ),
+
+                dbc.Row(
+                [
+                    dbc.Col(
+                        slider_under,
+                     width=6,),
+                     dbc.Col(
+                        slider_over,
+                     width=6,),
+                ],
+                form=True, align="start", className="mb-0",
+                ),
+
+                
+                
                 dbc.Button(
                     "Click here", color="success", className="mt-auto"
                 ),
@@ -244,37 +270,41 @@ selectors = html.Div([
 prediction_cards = dbc.Card(
             dbc.CardBody(
                 [
-                dbc.CardDeck(
-                [
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                selectors,
-                            ]
-                        ), color="primary", outline=True
-                    ),
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                html.H5("Card 2", className="card-title"),
-                                dbc.Alert(("Prediction of the probability that an inmate re-offends a second time." 
-                                "Please modify the parameters on the left and then press Run predictor to obtain the"
-                                "prediction."), color="success"),
-                                html.P(
-                                    "This card has some text content.",
-                                    className="card-text",
-                                ),
-                                dbc.Button(
-                                    "Run predictor", color="warning", className="mt-auto"
-                                ),
-                            ]
-                        ), color="primary", outline=True
-                    ),
-                ]
+                html.H1('Prediction tool for individuals',className="card-title"),
+                dbc.Row([
+                        dbc.Col([
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        selectors,
+                                    ]
+                                ), color="primary", outline=True
+                            ),
+                        ], width=8),
+                        dbc.Col([
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        
+                                        html.H5("Instructions", className="card-title"),
+                                        #html.P(description_short_SHAP,className="text-justify"),
+                                        dbc.Alert(html.P(("Prediction of the probability that a child suffers malnutrition or relapse "
+                                        "on it within the next 6 months. Please modify the parameters on the left and then press ",
+                                        html.Em("\"RUN PREDICTOR\""), " to obtain the prediction."),className="text-justify"), color="success"),
+                                        html.P(
+                                            "This card has some text content.",
+                                            className="card-text",
+                                        ),
+                                        dbc.Button(
+                                            "Run predictor", color="warning", className="mt-auto"
+                                        ),
+                                    ]
+                                ), color="primary", outline=True
+                            ),
+                        ],width=4),
+                    ],)
+                ])
             )
-        ],
-    )
-)
 
 
 text_short_SHAP_1 = (("What you see on the left side is a waterfall plot visualizing "
@@ -306,30 +336,32 @@ description_short_SHAP = dbc.Alert(
 
 # Bottom-section of the page - SHAP values visualization and their interpretation  
 Shap_cards = dbc.Card(
-            dbc.CardBody(
+                dbc.CardBody(
                 [
-                dbc.CardDeck(
-                [
-                    dbc.Card([
-                        dbc.CardImg(src=img,bottom=True),
-                        dbc.CardBody(
-                            
-                                html.P("SHAP values summary", className="card-text"),
-                                #html.Img(src=img, height="275px"),
-                        )
-                    ], color="primary", outline=True),
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                html.P(description_short_SHAP,className="text-justify"),
-                            ]
-                        ), color="primary", outline=True, 
-                    ),
-                ]
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardBody(
+                                        html.H3("SHAP values summary", className="card-title text-center"),
+                                        #html.Img(src=img, height="275px"),
+                                ),
+                                dbc.CardImg(src=img, bottom=True),
+                            ], color="primary", outline=True),
+                        ],width=8),
+                        dbc.Col([
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.H3("Interpretation of the SHAP values", className="card-title"),
+                                        html.P(description_short_SHAP,className="text-justify"),
+                                    ]
+                                ), color="primary", outline=True, 
+                            ),
+                        ],width=4),
+                    ]),
+                ],
             )
-        ],
-    )
-)
+        )
 
 
 
@@ -337,7 +369,7 @@ Shap_cards = dbc.Card(
 # Layout
 layout = dbc.Container(
     [#dbc.Container([
-        html.H1('Prediction tool for individuals'),
+        #html.H1('Prediction tool for individuals'),
         dbc.Row([
             #html.Img(src='/assets/happychildren.jpg', height="200px"),
             ], justify="center",#align="center", 
