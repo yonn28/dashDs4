@@ -1,7 +1,7 @@
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
 import numpy as np
@@ -46,6 +46,7 @@ valores = {"AVG_ZScorePesoTalla_12M":-2.5, #[-3,3] --> Slider float
 9-No aplica por flujo
 '''
 
+"""
 # Data processing: Calculate SHAP values and brings the image
 base_variables = PredictMini.convertirDicEnBase(valores)
 img, shap_values = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
@@ -56,6 +57,7 @@ features = ["AVG_ZScorePesoTalla_12M","MAX_ZScorePesoTalla_12M","Veces_Desnutric
 
 # Prob. predicted for the model
 prob = 0.5 + shap_values[1][0].sum()
+"""
 
 # List of child care categories
 child_care_opt = ["Attends a community place, kindergarten, child development center or school.",
@@ -72,7 +74,7 @@ drop_model = dbc.FormGroup(
         dbc.Col([
             dcc.Dropdown(
                 id="model",
-                options=[{'value': "0", 'label': "Malnutrition"}, {'value': "1", 'label': "Relapse"}],
+                options=[{'value': 0, 'label': "Malnutrition"}, {'value': 1, 'label': "Relapse"}],
                 value=0,
                 #className="container-fluid"
             ),
@@ -80,7 +82,7 @@ drop_model = dbc.FormGroup(
     ],
     row=True,
     #inline=True,
-    #className="mr-5",
+    className="ml-0 mr-0",
 )
 
 # Dropdown child-care
@@ -99,7 +101,7 @@ drop_child_care = dbc.FormGroup(
     ],
     row=True,
     #inline=True,
-    #className="mr-5",
+    className="ml-0 mr-0",
 )
 
 
@@ -124,7 +126,7 @@ slider_min_z = dbc.FormGroup(
             width=8, align="center"
         ),
     ],
-    row=True, className="mb-0 ml-0",
+    row=True, className="mb-0 ml-0 mr-0",
 )
 
 slider_max_z = dbc.FormGroup(
@@ -209,6 +211,40 @@ slider_over = dbc.FormGroup(
 )
 
 
+switches = dbc.Row([
+            dbc.Col([
+                dbc.FormGroup([
+                    dbc.Label("Toggle a bunch", html_for="switches",
+                        hidden=True, width=12, align="center"),
+                    dbc.Checklist(
+                        options=[
+                            {"label": "Disability", "value": 1},
+                            {"label": "Literate", "value": 2},
+                            {"label": "Study", "value": 3},
+                            {"label": "Receives food", "value": 4},
+                        ],
+                        value=[1],
+                        id="switches",
+                        switch=True,
+                        #inline=True,
+                        #labelClassName="label_selector",
+                        labelCheckedClassName="label_selector",
+                        style={"display": "flex", "justify-content": "space-evenly"},
+                    ),
+                ],),  #row=True
+            ], width=12, )#style={"display": "flex", "justify-content": "space-evenly"},),
+        ], form=True, align="start", className="mb-0 pt-0",)
+
+
+
+
+
+
+
+
+
+
+
 # Section where the user type the variables' values
 selectors = html.Div([
                 html.H5("Select all parameters that apply", className="card-title"),
@@ -217,7 +253,7 @@ selectors = html.Div([
                             " model, we assume that the child already had malnutrition."], color="success"),
                 drop_model,
                 html.P(
-                    "Answer the following questions with respect "
+                    "Answer the following 10 questions with respect "
                     "to the past 12 months.",
                     className="card-text",
                 ),
@@ -257,9 +293,7 @@ selectors = html.Div([
 
                 
                 
-                dbc.Button(
-                    "Click here", color="success", className="mt-auto"
-                ),
+                #dbc.Button("Click here", color="success", className="mt-auto"),
 
 ])
 
@@ -277,6 +311,13 @@ prediction_cards = dbc.Card(
                                 dbc.CardBody(
                                     [
                                         selectors,
+                                        #dbc.Row(
+                                            #[
+                                                #dbc.Col([
+                                                    switches,
+                                                #], width=12),
+                                            #]),#, justify="center"),
+
                                     ]
                                 ), color="primary", outline=True
                             ),
@@ -296,7 +337,8 @@ prediction_cards = dbc.Card(
                                             className="card-text",
                                         ),
                                         dbc.Button(
-                                            "Run predictor", color="warning", className="mt-auto"
+                                            id="button_pred", children="Run predictor", n_clicks=0,
+                                            color="warning", className="mt-auto"
                                         ),
                                     ]
                                 ), color="primary", outline=True
@@ -316,7 +358,9 @@ text_short_SHAP_1 = (("What you see on the left side is a waterfall plot visuali
 "has larger impact. The sum of all feature shap values explains why model prediction "
 "was different from the baseline."))
 
-text_short_SHAP_2 = (f"Model predicted {prob:.3f} (Relapse in malnutrition), whereas the base_value is 0.5. Biggest "
+#f"Model predicted {prob:.3f}
+
+text_short_SHAP_2 = (f"Model predicted", html.Span(children=[],id="prob-span"), "(Relapse in malnutrition), whereas the base_value is 0.5. Biggest "
 "effect is caused by the children being classified 3 times with malnutrition in the past "
 "12 months; This has increased his chances of a relapse significatively. This same effect " 
 "is caused by having an average ZScorePesoTalla of X, and… (asi con c/u?). In contrast, "
@@ -345,7 +389,8 @@ Shap_cards = dbc.Card(
                                         html.H3("SHAP values summary", className="card-title text-center"),
                                         #html.Img(src=img, height="275px"),
                                 ),
-                                dbc.CardImg(src=img, bottom=True),
+                                dbc.CardImg(id="shap_img", bottom=True), #, src=""
+                                #html.Img(id="shap_img",src=""),
                             ], color="primary", outline=True),
                         ],width=8),
                         dbc.Col([
@@ -389,3 +434,49 @@ layout = dbc.Container(
 
 
 # Callbacks
+
+
+@app.callback(
+    [Output(component_id = "shap_img", component_property = "src"),
+    Output(component_id = "prob-span", component_property = "children"),],
+    [Input(component_id = "button_pred", component_property = "n_clicks"),],
+    [State(component_id = "model", component_property = "value"),]
+)
+def on_button_click(n, model_val):
+    print(f"button-n_clicks are: {n}")
+    print(type(n))
+    print(f"value model is: {model_val}")
+    print(type(model_val))
+    if n >= 0:
+        base_variables = PredictMini.convertirDicEnBase(valores)
+        if model_val == 0:
+            img, shap_values = PredictMini.plotShapValues(Modelo_malnutrition_subset,base_variables)
+            #objeto_modelo =  Modelo_malnutrition_subset
+            print("Malnutrition")
+        if model_val == 1:
+            img, shap_values = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
+            #objeto_modelo = Modelo_relapse_subset
+            print("Relapse")
+        
+        # Prob. predicted for the model
+        prob = 0.5 + shap_values[1][0].sum()
+
+        return (img, f"{prob:.3f}")
+
+
+
+"""
+# Data processing: Calculate SHAP values and brings the image
+
+img, shap_values = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
+#print(PredictMini.obtenerProbabilidad(Modelo_relapse_subset,base_variables))
+
+features = ["AVG_ZScorePesoTalla_12M","MAX_ZScorePesoTalla_12M","Veces_DesnutricionSM_12M",
+            "Veces_SobrePeso_12M","MIN_ZScorePesoTalla_12M"]
+
+# Prob. predicted for the model
+prob = 0.5 + shap_values[1][0].sum()
+
+# List of child care categories
+child_care_opt
+"""
