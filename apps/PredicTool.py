@@ -20,44 +20,6 @@ with urlopen('https://storage.googleapis.com/base_final_cloud/Modelo_relapse_sub
 with urlopen('https://storage.googleapis.com/base_final_cloud/Modelo_malnutrition_subset.sav') as response:
     Modelo_malnutrition_subset = joblib.load(response)
 
-#SHAP_Val.plotShapValuesTop(modelo_malnutrition, base_malnutrition)
-
-valores = {"AVG_ZScorePesoTalla_12M":-2.5, #[-3,3] --> Slider float
-           "MAX_ZScorePesoTalla_12M":-1.0, #[-3,3] --> Slider float
-           "Veces_DesnutricionSM_12M":3.0, # 0 en adelante --> Slider enteros positivos
-           "Veces_SobrePeso_12M":0.0, # 0 en adelante --> Slider enteros positivos
-           "MIN_ZScorePesoTalla_12M":-3.0, # [-3,3] --> Slider float
-           "tip_cuidado_niños":1, #Mas adelante --> Dropdown
-           "ind_discap":"ninguna", #ninguna o si --> Switch
-           "ind_leer_escribir":1.0, #Posibles valores 1:si 2:no  --> Switch
-           "ind_estudia":0.0, #Posibles valores 1: si 2:no --> Switch
-           "ind_recibe_comida":0.0} #osibles valores 1:si 2:no --> Switch
-
-'''
-
-#Posibles valores de tip_cuidado_niños
-1- Asiste a un lugar comunitario, jardín o centro de desarrollo infantil o colegio 
-2- Con su padre o madre en la casa
-3- Con su padre o madre en el trabajo
-4- Con empleada o niñera en la casa
-5- Al cuidado de un pariente de 18 años o más
-6- Al cuidado de un pariente menor de 18 años
-7- En casa solo
-9-No aplica por flujo
-'''
-
-"""
-# Data processing: Calculate SHAP values and brings the image
-base_variables = PredictMini.convertirDicEnBase(valores)
-img, shap_values = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
-#print(PredictMini.obtenerProbabilidad(Modelo_relapse_subset,base_variables))
-
-features = ["AVG_ZScorePesoTalla_12M","MAX_ZScorePesoTalla_12M","Veces_DesnutricionSM_12M",
-            "Veces_SobrePeso_12M","MIN_ZScorePesoTalla_12M"]
-
-# Prob. predicted for the model
-prob = 0.5 + shap_values[1][0].sum()
-"""
 
 # List of child care categories
 child_care_opt = ["Attends a community place, kindergarten, child development center or school.",
@@ -105,9 +67,8 @@ drop_child_care = dbc.FormGroup(
 )
 
 
-
-#{i : str(i) for i in np.linspace(-3.0,3.0,num=int((6/0.01)+1))}
 #style={"font-size":"0.8125rem","font-weight":"bold"}
+step = 1
 slider_min_z = dbc.FormGroup(
     [
         dbc.Label("Min. Z-score weight-height:", html_for="slider-min-z",
@@ -118,7 +79,7 @@ slider_min_z = dbc.FormGroup(
                 min=-3,
                 max=3,
                 step=0.01,
-                marks={int(i) : str(i) for i in np.linspace(-3.0,3.0,num=int((6/1)+1))},
+                marks={int(i) : str(i) for i in np.linspace(-3.0,3.0,num=int((6/step)+1))},
                 value=0,
                 tooltip= {"always_visible":True,"placement":"top"},
                 #className="pt-0"
@@ -236,15 +197,6 @@ switches = dbc.Row([
         ], form=True, align="start", className="mb-0 pt-0",)
 
 
-
-
-
-
-
-
-
-
-
 # Section where the user type the variables' values
 selectors = html.Div([
                 html.H5("Select all parameters that apply", className="card-title"),
@@ -299,7 +251,6 @@ selectors = html.Div([
 
 
 
-
 # Middle-section of the page - Predictor
 prediction_cards = dbc.Card(
             dbc.CardBody(
@@ -332,14 +283,21 @@ prediction_cards = dbc.Card(
                                         dbc.Alert(html.P(("Prediction of the probability that a child suffers malnutrition or relapse "
                                         "on it within the next 6 months. Please modify the parameters on the left and then press ",
                                         html.Em("\"RUN PREDICTOR\""), " to obtain the prediction."),className="text-justify"), color="success"),
-                                        html.P(
-                                            "This card has some text content.",
-                                            className="card-text",
-                                        ),
-                                        dbc.Button(
-                                            id="button_pred", children="Run predictor", n_clicks=0,
-                                            color="warning", className="mt-auto"
-                                        ),
+                                        #html.P(
+                                            #"This card has some text content.",
+                                            #className="card-text",
+                                        #),
+                                        dbc.Row([
+                                            dbc.Col([
+                                                dbc.Button(
+                                                    id="button_pred", children="Run predictor", n_clicks=0,
+                                                    color="warning", className="mt-auto"
+                                                ),
+                                            ], style={"display": "flex","justify-content": "center"}),
+                                        ],),
+                                        dbc.Progress(id="prog-bar", value="", color="",
+                                            striped=True, animated=True, 
+                                            className="mb-3 mt-4" , style={"height": "30px"}),
                                     ]
                                 ), color="primary", outline=True
                             ),
@@ -349,18 +307,21 @@ prediction_cards = dbc.Card(
             )
 
 
-text_short_SHAP_1 = (("What you see on the left side is a waterfall plot visualizing "
-"SHAP values for each model feature. Feature values in"), html.Span(" pink ", style={"color": "#f8026a"}),
-("cause an increase in the "
-"final prediction (Relapse probability/malnutrition probability). In contrast, feature "
-"values in blue cause a decrease in the final prediction. Size of the bar shows the "
+text_short_SHAP_1 = ("What you see on the left side is a waterfall plot to visualize "
+"SHAP values for each model feature. Feature values in", html.Span(" pink ", style={"color": "#f8026a", "font-weight": "bold"}),
+"cause an increase in the "
+"final prediction (malnutrition/relapse probability). In contrast, feature "
+"values in" , html.Span(" blue ", style={"color": "#0288f8", "font-weight": "bold"}), "cause a decrease in the final prediction. Size of the bar shows the "
 "magnitude of the feature's effect. A larger bar means that the corresponding feature "
 "has larger impact. The sum of all feature shap values explains why model prediction "
-"was different from the baseline."))
+"was different from the baseline.")
+
 
 #f"Model predicted {prob:.3f}
-
-text_short_SHAP_2 = (f"Model predicted", html.Span(children=[],id="prob-span"), "(Relapse in malnutrition), whereas the base_value is 0.5. Biggest "
+text_short_SHAP_2 = ("Model predicted a probability of ",
+html.Span(children=[],id="prob-span", style={"color": "#f8026a", "font-weight": "bold"}),
+" of suffering ", html.Span(children=[],id="model-span", style={"color": "#f8026a", "font-weight": "bold"}),
+", whereas the base_value is 0.5. Biggest "
 "effect is caused by the children being classified 3 times with malnutrition in the past "
 "12 months; This has increased his chances of a relapse significatively. This same effect " 
 "is caused by having an average ZScorePesoTalla of X, and… (asi con c/u?). In contrast, "
@@ -424,8 +385,6 @@ layout = dbc.Container(
             ], style={"margin-top": "20px"}, justify="center",
         ),
         dbc.Row([
-            #dbc.Col(html.Img(src=img, height="275px"), className="text-center"), #
-            #dbc.Col(dbc.Card(description_short_SHAP, color="primary", outline=True)),
             Shap_cards,
             ], style={"margin-top": "20px"}, justify="center",#align="center",   
         ),
@@ -438,34 +397,102 @@ layout = dbc.Container(
 
 @app.callback(
     [Output(component_id = "shap_img", component_property = "src"),
-    Output(component_id = "prob-span", component_property = "children"),],
-    [Input(component_id = "button_pred", component_property = "n_clicks"),],
-    [State(component_id = "model", component_property = "value"),]
+    Output(component_id = "prob-span", component_property = "children"),
+    Output(component_id = "model-span", component_property = "children"),
+    Output(component_id = "prog-bar", component_property = "children"),
+    Output(component_id = "prog-bar", component_property = "value"),
+    Output(component_id = "prog-bar", component_property = "color"),
+    ],
+    [Input(component_id = "button_pred", component_property = "n_clicks"),
+    ],
+    [State(component_id = "model", component_property = "value"),
+    State(component_id = "ch_care", component_property = "value"),
+    State(component_id = "slider-min-z", component_property = "value"),
+    State(component_id = "slider-max-z", component_property = "value"),
+    State(component_id = "slider-avg-z", component_property = "value"),
+    State(component_id = "slider-under", component_property = "value"),
+    State(component_id = "slider-over", component_property = "value"),
+    State(component_id = "switches", component_property = "value"),
+    ]
 )
-def on_button_click(n, model_val):
-    print(f"button-n_clicks are: {n}")
-    print(type(n))
-    print(f"value model is: {model_val}")
-    print(type(model_val))
+def on_button_click(n, model_val, care, min_z, max_z, avg_z, under, over, switch_list):
+    print(f"button-n_clicks are: {n}, and type: {type(n)}")
+    #print(type(n))
+    print(f"value model is: {model_val}, and type: {type(model_val)}")
+    #print(type(model_val))
+
+    print(f"value care is: {care}, and type: {type(care)}")
+    print(f"value min_z is: {min_z}, and type: {type(min_z)}")
+    print(f"value max_z is: {max_z}, and type: {type(max_z)}")
+    print(f"value avg_z is: {avg_z}, and type: {type(avg_z)}")
+    print(f"value under is: {under}, and type: {type(under)}")
+    print(f"value over is: {over}, and type: {type(over)}")
+    print(f"value switch_list is: {switch_list}, and type: {type(switch_list)}")
+
     if n >= 0:
+        valores = {"AVG_ZScorePesoTalla_12M": avg_z, #[-3,3] --> Slider float
+           "MAX_ZScorePesoTalla_12M": max_z, #[-3,3] --> Slider float
+           "Veces_DesnutricionSM_12M": under, # 0 en adelante --> Slider enteros positivos
+           "Veces_SobrePeso_12M": over, # 0 en adelante --> Slider enteros positivos
+           "MIN_ZScorePesoTalla_12M": min_z, # [-3,3] --> Slider float
+           } 
+
+        valores["tip_cuidado_niños"] = 9 if care == 8 else care
+        valores["ind_discap"] =        "si" if 1 in switches else "ninguna"
+        valores["ind_leer_escribir"] =  1 if 2 in switches else 2
+        valores["ind_estudia"] =        1 if 3 in switches else 2
+        valores["ind_recibe_comida"] =  1 if 4 in switches else 2
         base_variables = PredictMini.convertirDicEnBase(valores)
         if model_val == 0:
             img, shap_values = PredictMini.plotShapValues(Modelo_malnutrition_subset,base_variables)
-            #objeto_modelo =  Modelo_malnutrition_subset
+            str_modelo =  "malnutrition"
             print("Malnutrition")
         if model_val == 1:
             img, shap_values = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
-            #objeto_modelo = Modelo_relapse_subset
+            str_modelo =  "relapse"
             print("Relapse")
         
         # Prob. predicted for the model
         prob = 0.5 + shap_values[1][0].sum()
 
-        return (img, f"{prob:.3f}")
+        if prob < 0.25:
+            color_bar = "success"
+        elif prob < 0.50:
+            color_bar = "warning"
+        elif prob <= 1:
+            color_bar = "danger"
+
+        return (img, f"{prob:.3f}", str_modelo, f"{prob*100:.0f}%", f"{prob*100:.0f}", color_bar)
+
 
 
 
 """
+valores = {"AVG_ZScorePesoTalla_12M":-2.5, #[-3,3] --> Slider float
+           "MAX_ZScorePesoTalla_12M":-1.0, #[-3,3] --> Slider float
+           "Veces_DesnutricionSM_12M":3.0, # 0 en adelante --> Slider enteros positivos
+           "Veces_SobrePeso_12M":0.0, # 0 en adelante --> Slider enteros positivos
+           "MIN_ZScorePesoTalla_12M":-3.0, # [-3,3] --> Slider float
+           "tip_cuidado_niños":1, #Mas adelante --> Dropdown
+           "ind_discap":"ninguna", #ninguna o si --> Switch
+           "ind_leer_escribir":1.0, #Posibles valores 1:si 2:no  --> Switch
+           "ind_estudia":0.0, #Posibles valores 1: si 2:no --> Switch
+           "ind_recibe_comida":0.0} #osibles valores 1:si 2:no --> Switch
+"""
+
+
+"""
+#Posibles valores de tip_cuidado_niños
+1- Asiste a un lugar comunitario, jardín o centro de desarrollo infantil o colegio 
+2- Con su padre o madre en la casa
+3- Con su padre o madre en el trabajo
+4- Con empleada o niñera en la casa
+5- Al cuidado de un pariente de 18 años o más
+6- Al cuidado de un pariente menor de 18 años
+7- En casa solo
+9-No aplica por flujo
+
+
 # Data processing: Calculate SHAP values and brings the image
 
 img, shap_values = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
