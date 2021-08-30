@@ -251,6 +251,15 @@ selectors = html.Div([
 
 
 
+
+exp_prob = dcc.Markdown('''
+---
+>
+> How to read the probability?.
+> 
+''')  
+
+
 # Middle-section of the page - Predictor
 prediction_cards = dbc.Card(
             dbc.CardBody(
@@ -295,6 +304,21 @@ prediction_cards = dbc.Card(
                                                 ),
                                             ], style={"display": "flex","justify-content": "center"}),
                                         ],),
+
+
+                                        exp_prob,
+                                        html.Div([
+                                            html.Ul([
+                                                html.Li([html.Span("Low risk: ", style={"color": "#1fbd38", "font-weight": "bold"}),
+                                                "The child is currently at low risk of suffering this disease."]),
+                                                html.Li([html.Span("Slight risk: ", style={"color": "#fff000", "font-weight": "bold"}),
+                                                "The child has slight risk of suffering this disease."]),
+                                                html.Li([html.Span("Latent risk: ", style={"color": "#f86e02", "font-weight": "bold"}),
+                                                "The child has latent risk of suffering this disease."]),
+                                                html.Li([html.Span("High risk: ", style={"color": "#f30404", "font-weight": "bold"}),
+                                                "The child should be prioritized."]),
+                                            ]),
+                                        ]),
                                         dbc.Progress(id="prog-bar", value="", color="",
                                             striped=True, animated=True, 
                                             className="mb-3 mt-4" , style={"height": "30px"}),
@@ -367,7 +391,7 @@ Shap_cards = dbc.Card(
                     ]),
                 ],
             )
-        )
+        )   
 
 
 
@@ -417,10 +441,7 @@ layout = dbc.Container(
 )
 def on_button_click(n, model_val, care, min_z, max_z, avg_z, under, over, switch_list):
     print(f"button-n_clicks are: {n}, and type: {type(n)}")
-    #print(type(n))
     print(f"value model is: {model_val}, and type: {type(model_val)}")
-    #print(type(model_val))
-
     print(f"value care is: {care}, and type: {type(care)}")
     print(f"value min_z is: {min_z}, and type: {type(min_z)}")
     print(f"value max_z is: {max_z}, and type: {type(max_z)}")
@@ -429,7 +450,9 @@ def on_button_click(n, model_val, care, min_z, max_z, avg_z, under, over, switch
     print(f"value over is: {over}, and type: {type(over)}")
     print(f"value switch_list is: {switch_list}, and type: {type(switch_list)}")
 
+    # Trigger: each time the user gives a click
     if n >= 0:
+        # Building the feature vector
         valores = {"AVG_ZScorePesoTalla_12M": avg_z, #[-3,3] --> Slider float
            "MAX_ZScorePesoTalla_12M": max_z, #[-3,3] --> Slider float
            "Veces_DesnutricionSM_12M": under, # 0 en adelante --> Slider enteros positivos
@@ -442,25 +465,34 @@ def on_button_click(n, model_val, care, min_z, max_z, avg_z, under, over, switch
         valores["ind_leer_escribir"] =  1 if 2 in switches else 2
         valores["ind_estudia"] =        1 if 3 in switches else 2
         valores["ind_recibe_comida"] =  1 if 4 in switches else 2
+
+        # Turning the feature dict in a pd.dataframe
         base_variables = PredictMini.convertirDicEnBase(valores)
+
+        # Parameter tuning according the selected model
         if model_val == 0:
             img, shap_values = PredictMini.plotShapValues(Modelo_malnutrition_subset,base_variables)
             str_modelo =  "malnutrition"
+            ranges = [0.34, 0.46, 0.59]
             print("Malnutrition")
         if model_val == 1:
             img, shap_values = PredictMini.plotShapValues(Modelo_relapse_subset,base_variables)
             str_modelo =  "relapse"
+            ranges = [0.45, 0.55, 0.63]
             print("Relapse")
         
         # Prob. predicted for the model
         prob = 0.5 + shap_values[1][0].sum()
 
-        if prob < 0.25:
-            color_bar = "success"
-        elif prob < 0.50:
-            color_bar = "warning"
+        # Bar color selection
+        if prob <= ranges[0]:
+            color_bar = "#1fbd38" #alt. success
+        elif prob <= ranges[1]:
+            color_bar = "#fff000" #alt. warning
+        elif prob <= ranges[2]:
+            color_bar = "#f86e02"
         elif prob <= 1:
-            color_bar = "danger"
+            color_bar = "#f30404" #alt. danger
 
         return (img, f"{prob:.3f}", str_modelo, f"{prob*100:.0f}%", f"{prob*100:.0f}", color_bar)
 
