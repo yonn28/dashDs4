@@ -117,7 +117,7 @@ a:hover{
 } */
 
 .label_selector{
-    font-size:0.8125rem;
+    font-size:1rem;/*0.8125rem;*/
     font-weight: bold;
     /*padding-top: 0rem;*/
 }
