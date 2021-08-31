@@ -6,8 +6,7 @@ from dash.dependencies import Input, Output, State
 from app import app
 
 # Connect to app pages
-from apps import dashboard, About
-# , Malnutrition, PredicTool, Home, PredicTool  
+from apps import dashboard, About, Malnutrition, PredicTool, Home, PredicTool 
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
@@ -44,9 +43,9 @@ sidebar = html.Div(
                 html.P("ANALYTICS", className='text-p'),
                 dbc.NavLink('Dashboard', href='/apps/Dashboard', active="exact"),
                 html.P("CHILDREN AT RISK", className='text-p'),
-                # dbc.NavLink('Malnutrition', href='/apps/Malnutrition', active="exact"),
-                # dbc.NavLink('Relapse', href='/apps/Relapse', active="exact"),
-                # dbc.NavLink('Prediction Tool', href='/apps/PredicTool', active="exact"),
+                dbc.NavLink('Malnutrition', href='/apps/Malnutrition', active="exact"),
+                dbc.NavLink('Relapse', href='/apps/Relapse', active="exact"),
+                dbc.NavLink('Prediction Tool', href='/apps/PredicTool', active="exact"),
                 dbc.NavLink('About Us', href='/apps/About', active="exact"),
             ],
             vertical=True,
@@ -75,14 +74,14 @@ app.layout = html.Div([
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
-    # if pathname == '/apps/Home':
-    #     return Home.layout
+    if pathname == '/apps/Home':
+        return Home.layout
     if pathname == '/apps/Dashboard':
         return dashboard.layout
-    # if pathname == '/apps/Malnutrition':
-    #     return Malnutrition.layout
-    # if pathname == '/apps/PredicTool':
-    #     return PredicTool.layout
+    if pathname == '/apps/Malnutrition':
+        return Malnutrition.layout
+    if pathname == '/apps/PredicTool':
+        return PredicTool.layout
     if pathname == '/apps/About':
         return About.layout
     else:
