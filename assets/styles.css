@@ -108,10 +108,10 @@ a:hover{
 .about_us__name{
     color: blue;
     font-size: 20;
-    text-align: "center";
+    text-align: center;
 }
 .about_us__rol{
-    color: 'darkblue'; 
+    color: darkblue; 
     font-size: 15;
     text-align: center;
 }
@@ -150,3 +150,28 @@ a:hover{
     font-weight: bold;
     /*padding-top: 0rem;*/
 }
+
+.pink_bold{
+    color: #f8026a;
+    font-weight: bold;
+}
+
+.blue_bold{
+    color: #0288f8;
+    font-weight: bold;
+}
+
+.just_even_1{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.just_even_2{
+    display: flex;
+    justify-content: space-around;
+ }
+
+ .just_center{
+    display: flex;
+    justify-content: center;
+ }
