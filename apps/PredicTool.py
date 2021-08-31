@@ -190,7 +190,8 @@ switches = dbc.Row([
                         #inline=True,
                         #labelClassName="label_selector",
                         labelCheckedClassName="label_selector",
-                        style={"display": "flex"},
+                        #style={"display": "flex", "justify-content": "space-evenly"},
+                        className="just_even_2",
                     ),
                 ],),  #row=True
             ], width=12, )#style={"display": "flex", "justify-content": "space-evenly"},),
@@ -302,7 +303,7 @@ prediction_cards = dbc.Card(
                                                     id="button_pred", children="Run predictor", n_clicks=0,
                                                     color="warning", className="mt-auto"
                                                 ),
-                                            ], style={"display": "flex","justify-content": "center"}),
+                                            ], className="just_center"), #style={"display": "flex","justify-content": "center"}),
                                         ],),
 
 
@@ -332,10 +333,10 @@ prediction_cards = dbc.Card(
 
 
 text_short_SHAP_1 = ("What you see on the left side is a waterfall plot to visualize "
-"SHAP values for each model feature. Feature values in", html.Span(" pink ", ),
+"SHAP values for each model feature. Feature values in", html.Span(" pink ", className="pink_bold"),
 "cause an increase in the "
 "final prediction (malnutrition/relapse probability). In contrast, feature "
-"values in" , html.Span(" blue ", style={"color": "#0288f8", "font-weight": "bold"}), "cause a decrease in the final prediction. Size of the bar shows the "
+"values in" , html.Span(" blue ", className="blue_bold"), "cause a decrease in the final prediction. Size of the bar shows the "
 "magnitude of the feature's effect. A larger bar means that the corresponding feature "
 "has larger impact. The sum of all feature shap values explains why model prediction "
 "was different from the baseline.")
@@ -343,8 +344,8 @@ text_short_SHAP_1 = ("What you see on the left side is a waterfall plot to visua
 
 #f"Model predicted {prob:.3f}
 text_short_SHAP_2 = ("Model predicted a probability of ",
-html.Span(children=[],id="prob-span"),
-" of suffering ", html.Span(children=[],id="model-span"),
+html.Span(children=[],id="prob-span", className="pink_bold"),
+" of suffering ", html.Span(children=[],id="model-span", className="pink_bold"),
 ", whereas the base_value is 0.5. Biggest "
 "effect is caused by the children being classified 3 times with malnutrition in the past "
 "12 months; This has increased his chances of a relapse significatively. This same effect " 
@@ -358,7 +359,7 @@ description_short_SHAP = dbc.Alert(
                 html.A("example link", href="#", className="alert-link"),
                 #html.B(red, style:"red")
             ],
-            color="dark",
+            color="dark", className="text-justify",
         )
 
 
@@ -383,7 +384,8 @@ Shap_cards = dbc.Card(
                                 dbc.CardBody(
                                     [
                                         html.H3("Interpretation of the SHAP values", className="card-title"),
-                                        html.P(description_short_SHAP,className="text-justify"),
+                                        #html.P(description_short_SHAP,className="text-justify"),
+                                        description_short_SHAP,
                                     ]
                                 ), color="primary", outline=True, 
                             ),
@@ -406,11 +408,11 @@ layout = dbc.Container(
         ),
         dbc.Row([
             prediction_cards
-            ], style={"margin-top": "20px"}, justify="center",
+            ], className="mt-4", justify="center", #style={"margin-top": "20px"}
         ),
         dbc.Row([
             Shap_cards,
-            ], style={"margin-top": "20px"}, justify="center",#align="center",   
+            ], className="mt-4", justify="center",#align="center",   style={"margin-top": "20px"}
         ),
     ],fluid=True #className="container-fluid"
 )
