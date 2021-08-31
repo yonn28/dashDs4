@@ -100,6 +100,7 @@ a:hover{
 /*about us styles*/
 
 .about_us__foto{
+    height:250px;
     display:block;
     margin-right:auto;
     margin-left:auto;
