@@ -95,6 +95,34 @@ a:hover{
     /*margin-top: 20px;*/
     padding: 15px;
 }
+
+
+/*about us styles*/
+
+.about_us__foto{
+    display:block;
+    margin-right:auto;
+    margin-left:auto;
+}
+.about_us__name{
+    color: blue;
+    font-size: 20;
+    text-align: "center";
+}
+.about_us__rol{
+    color: 'darkblue'; 
+    font-size: 15;
+    text-align: center;
+}
+.about_us__img_footer{
+    height : 20px;
+    width: 20px;
+    display:block;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+
 /* table */
 @media (max-width: 780px) {
     .img_footer{

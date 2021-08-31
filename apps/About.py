@@ -24,51 +24,39 @@ layout = html.Div(
             [
                 dbc.Col(
                     [   
-                        html.Img(src='/assets/pics/nicolas.png', height="250px",id="nicolas_photo"),
-                        html.Div("\t Nicolás Cabrera Malik",style={'color': 'blue', 'fontSize': 20,"text-align": "center"}),
-                        html.Div("\t PhD Student",style={'color': 'darkblue', 'fontSize': 15,"text-align": "center"}),
+                        html.Img(src='/assets/pics/nicolas.png', height="250px",id="nicolas_photo",className='about_us__foto'),
+                        html.Div("\t Nicolás Cabrera Malik",className='about_us__name'),
+                        html.Div("\t PhD Student",classNhtml.Div("\t Electronic Engineer",className='about_us__rol'),
                         html.A([
                                 html.Img(
                                 src='/assets/linkedin.png',
-                                style={
-                                    'height' : '20px',
-                                    'width' : '20px',
-                                    "display":"block","margin-right":"auto","margin-left":"auto"
-                                    })
+                                className='about_us__img_footer')
                                 ], href='http://www.linkedin.com/in/nicolas-cabrera-malik')
 
                         ,html.Hr()]
                     ),
                 dbc.Col(
                     [
-                        html.Img(src='/assets/pics/julian.png', height="250px",id="julian_photo"),
-                        html.Div("\t Julian Monsalve",style={'color': 'blue', 'fontSize': 20,"text-align": "center"}),
-                        html.Div("\t Industrial Engineer",style={'color': 'darkblue', 'fontSize': 15,"text-align": "center"}),
+                        html.Img(src='/assets/pics/julian.png', height="250px",id="julian_photo",className='about_us__foto'),
+                        html.Div("\t Julian Monsalve",className='about_us__name'),
+                        html.Div("\t Industrial Engineer",classNhtml.Div("\t Electronic Engineer",className='about_us__rol'),
                         html.A([
                                 html.Img(
                                 src='/assets/linkedin.png',
-                                style={
-                                    'height' : '20px',
-                                    'width' : '20px',
-                                    "display":"block","margin-right":"auto","margin-left":"auto"
-                                    })
+                                className='about_us__img_footer')
                                 ], href='http://www.linkedin.com/in/julian-monsalve-ace/')
 
                         ,html.Hr()]
                     ),
                 dbc.Col(
                     [
-                        html.Img(src='/assets/pics/david.png', height="250px",id="david_photo"),
-                        html.Div("\t David Quintero",style={'color': 'blue', 'fontSize': 20,"text-align": "center"}),
-                        html.Div("\t Electronic Engineer",style={'color': 'darkblue', 'fontSize': 15,"text-align": "center"}),
+                        html.Img(src='/assets/pics/david.png', height="250px",id="david_photo",className='about_us__foto'),
+                        html.Div("\t David Quintero",className='about_us__name'),
+                        html.Div("\t Electronic Engineer",className='about_us__rol'),
                         html.A([
                                 html.Img(
                                 src='/assets/linkedin.png',
-                                style={
-                                    'height' : '20px',
-                                    'width' : '20px',
-                                    "display":"block","margin-right":"auto","margin-left":"auto"
-                                    })
+                                className='about_us__img_footer')
                                 ], href='http://www.linkedin.com/in/david-alfredo-quintero-olaya-78a1561b6/')
 
                         ,html.Hr()]
@@ -79,51 +67,39 @@ layout = html.Div(
             [
                 dbc.Col(
                     [   
-                        html.Img(src='/assets/pics/natalia.png', height="250px",id="natalia_photo"),
-                        html.Div("\t Natalia Monroy",style={'color': 'blue', 'fontSize': 20,"text-align": "center"}),
-                        html.Div("\t Computer Science Student",style={'color': 'darkblue', 'fontSize': 15,"text-align": "center"}),
+                        html.Img(src='/assets/pics/natalia.png', height="250px",id="natalia_photo",className='about_us__foto'),
+                        html.Div("\t Natalia Monroy",className='about_us__name'),
+                        html.Div("\t Computer Science Student",classNhtml.Div("\t Electronic Engineer",className='about_us__rol'),
                         html.A([
                                 html.Img(
                                 src='/assets/linkedin.png',
-                                style={
-                                    'height' : '20px',
-                                    'width' : '20px',
-                                    "display":"block","margin-right":"auto","margin-left":"auto"
-                                    })
+                                className='about_us__img_footer')
                                 ], href='https://www.linkedin.com/in/namonroy96/')
 
                         ,html.Hr()]
                     ),
                 dbc.Col(
                     [
-                        html.Img(src='/assets/pics/Daniel.png', height="250px",id="daniel_photo"),
-                        html.Div("\t Daniel Ramirez",style={'color': 'blue', 'fontSize': 20,"text-align": "center"}),
-                        html.Div("\t Industrial Engineer",style={'color': 'darkblue', 'fontSize': 15,"text-align": "center"}),
+                        html.Img(src='/assets/pics/Daniel.png', height="250px",id="daniel_photo",className='about_us__foto'),
+                        html.Div("\t Daniel Ramirez",className='about_us__name'),
+                        html.Div("\t Industrial Engineer",classNhtml.Div("\t Electronic Engineer",className='about_us__rol'),
                         html.A([
                                 html.Img(
                                 src='/assets/linkedin.png',
-                                style={
-                                    'height' : '20px',
-                                    'width' : '20px',
-                                    "display":"block","margin-right":"auto","margin-left":"auto"
-                                    })
+                                className='about_us__img_footer')
                                 ], href='https://www.linkedin.com/in/danielramirezmilano/')
 
                         ,html.Hr()]
                     ),
                 dbc.Col(
                     [
-                        html.Img(src='/assets/pics/Yonny.png', height="250px",id="yonny_photo"),
-                        html.Div("\t Yonny Nova",style={'color': 'blue', 'fontSize': 20,"text-align": "center"}),
-                        html.Div("\t Electronic Engineer",style={'color': 'darkblue', 'fontSize': 15,"text-align": "center"}),
+                        html.Img(src='/assets/pics/Yonny.png', height="250px",id="yonny_photo",className='about_us__foto'),
+                        html.Div("\t Yonny Nova",className='about_us__name'),
+                        html.Div("\t Electronic Engineer",className='about_us__rol'),
                         html.A([
                                 html.Img(
                                 src='/assets/linkedin.png',
-                                style={
-                                    'height' : '20px',
-                                    'width' : '20px',
-                                    "display":"block","margin-right":"auto","margin-left":"auto"
-                                    })
+                                className='about_us__img_footer')
                                 ], href='https://www.linkedin.com/in/yonny-clinton-nova-cucaita/')
 
                         ,html.Hr()]
