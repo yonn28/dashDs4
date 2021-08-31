@@ -6,9 +6,15 @@ import dash
 app = dash.Dash(__name__,
                 external_stylesheets=[dbc.themes.MATERIA],
                 suppress_callback_exceptions=True,
-                meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0'}]
+                meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0'}],
+                title="KidNutrilytics",
                 )
 server = app.server
 
 # We need this for function callbacks  not present in the app.layout
 app.config.suppress_callback_exceptions = True
+
+
+
+#server=server,
+    

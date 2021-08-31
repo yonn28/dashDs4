@@ -12,35 +12,33 @@ from app import app
 
 banner_jumbotron = dbc.Jumbotron(
     [
-        html.H1("Jumbotron", className="display-3"),
-        html.P(
-            "Use a jumbotron to call attention to "
-            "featured content or information.",
-            className="lead",
-        ),
-        html.Hr(className="my-2"),
-        html.P(
-            "Jumbotrons use utility classes for typography and "
-            "spacing to suit the larger container."
-        ),
-        html.P(dbc.Button("Learn more", color="primary"), className="lead"),
-    ], className="jumbotron"
+        dbc.Container([
+            html.H1("KidNutrilytics\n", className="display-3 product_title"),
+            #html.Br(),
+            html.Hr(className="my-4"),
+            html.P(
+                "The ultimate platform to predict malnutrition "
+                "in children under five",
+                className="lead text_jumbotron",
+            ),
+            html.P(dbc.Button("Learn more", color="primary",
+                external_link=True, href="#col-home-2", active=True), className="lead"),
+        ], fluid=True, className="text-center text-light"),
+    ], className="jumbotron vertical-center", fluid=True
 )
 
-
+print("Running...")
 
 # Layout
 layout = dbc.Container(
     [
-
-        
-
-
-
         dbc.Row([
+            dbc.Col([
             #html.Img(src='/assets/happychildren.jpg', height="200px"),
-            banner_jumbotron,
-            ], #justify="center",#align="center", 
+                banner_jumbotron,
+
+            ],width=12, className="sm-12"),
+        ], #justify="center",#align="center",)
         ),
         dbc.Row([
             
@@ -50,7 +48,7 @@ layout = dbc.Container(
 
             dbc.Col(["Hola"
 
-            ], className="md-4"),
+            ],id="col-home-2", className="md-4"),
 
             dbc.Col(["Hola"
 

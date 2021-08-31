@@ -94,6 +94,7 @@ a:hover{
 .content {
     /*margin-top: 20px;*/
     padding: 15px;
+    /*display: flex;*/
 }
 
 
@@ -177,13 +178,33 @@ a:hover{
  }
 
  .jumbotron{
-    background-image: url("/assets/happychildren.jpg");
+    background-image: url("/assets/children-playing-grass.jpg"); /*happychildren.jpg*/   
     background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
-    /*color: white;*/
-    height: 300px;
-
+    background-position: center center;
+    color: white;
+    height: auto;
  }
+
+.product_title{
+    background: rgba(80, 80, 80, 0.6) none repeat scroll 0% 0%;
+    display: inline-block;
+    padding: 5px;
+    text-shadow: black 1px 1px;
+}
+
+
+ .text_jumbotron{
+    background: rgba(80, 80, 80, 0.6) none repeat scroll 0% 0%;
+    display: inline-block;
+    padding: 5px;
+ }
+
+ .vertical-center {
+    min-height: 100%;
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+  }
+
+  
