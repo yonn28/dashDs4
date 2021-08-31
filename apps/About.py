@@ -24,7 +24,7 @@ layout = html.Div(
             [
                 dbc.Col(
                     [   
-                        html.Img(src='/assets/pics/nicolas.png', id="nicolas_photo",className='about_us__foto'),
+                        html.Img(src='/assets/pics/Nicolas.png', id="nicolas_photo",className='about_us__foto'),
                         html.Div("\t Nicolás Cabrera Malik",className='about_us__name'),
                         html.Div("\t PhD Student",className='about_us__rol'),
                         html.A([html.Img(src='/assets/linkedin.png',className='about_us__img_footer')], href='http://www.linkedin.com/in/nicolas-cabrera-malik'),
@@ -32,7 +32,7 @@ layout = html.Div(
                     ]),
                 dbc.Col(
                     [
-                        html.Img(src='/assets/pics/julian.png', id="julian_photo",className='about_us__foto'),
+                        html.Img(src='/assets/pics/Julian.png', id="julian_photo",className='about_us__foto'),
                         html.Div("\t Julian Monsalve",className='about_us__name'),
                         html.Div("\t Industrial Engineer",className='about_us__rol'),
                         html.A([html.Img(src='/assets/linkedin.png',className='about_us__img_footer')], href='http://www.linkedin.com/in/julian-monsalve-ace/'),
@@ -40,7 +40,7 @@ layout = html.Div(
                     ]),
                 dbc.Col(
                     [
-                        html.Img(src='/assets/pics/david.png', id="david_photo",className='about_us__foto'),
+                        html.Img(src='/assets/pics/David.png', id="david_photo",className='about_us__foto'),
                         html.Div("\t David Quintero",className='about_us__name'),
                         html.Div("\t Electronic Engineer",className='about_us__rol'),
                         html.A([html.Img(src='/assets/linkedin.png',className='about_us__img_footer')], href='http://www.linkedin.com/in/david-alfredo-quintero-olaya-78a1561b6/'),
@@ -52,7 +52,7 @@ layout = html.Div(
             [
                 dbc.Col(
                     [   
-                        html.Img(src='/assets/pics/natalia.png', id="natalia_photo",className='about_us__foto'),
+                        html.Img(src='/assets/pics/Natalia.png', id="natalia_photo",className='about_us__foto'),
                         html.Div("\t Natalia Monroy",className='about_us__name'),
                         html.Div("\t Computer Science Student",className='about_us__rol'),
                         html.A([html.Img(src='/assets/linkedin.png',className='about_us__img_footer')], href='https://www.linkedin.com/in/namonroy96/'),

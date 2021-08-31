@@ -33,7 +33,7 @@ layout = dbc.Container(
             ], className="md-4"),
 
 
-            ], style={"margin-top": "20px"}, justify="center", #align="center",
+            ], justify="center", #align="center",
         ),
         
     ], fluid=True #className="container-fluid"

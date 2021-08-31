@@ -190,7 +190,7 @@ switches = dbc.Row([
                         #inline=True,
                         #labelClassName="label_selector",
                         labelCheckedClassName="label_selector",
-                        style={"display": "flex", "justify-content": "space-evenly"},
+                        style={"display": "flex"},
                     ),
                 ],),  #row=True
             ], width=12, )#style={"display": "flex", "justify-content": "space-evenly"},),
@@ -309,13 +309,13 @@ prediction_cards = dbc.Card(
                                         exp_prob,
                                         html.Div([
                                             html.Ul([
-                                                html.Li([html.Span("Low risk: ", style={"color": "#1fbd38", "font-weight": "bold"}),
+                                                html.Li([html.Span("Low risk: ", style={"color": "#1fbd38"}),
                                                 "The child is currently at low risk of suffering this disease."]),
-                                                html.Li([html.Span("Slight risk: ", style={"color": "#fff000", "font-weight": "bold"}),
+                                                html.Li([html.Span("Slight risk: ", style={"color": "#fff000"}),
                                                 "The child has slight risk of suffering this disease."]),
-                                                html.Li([html.Span("Latent risk: ", style={"color": "#f86e02", "font-weight": "bold"}),
+                                                html.Li([html.Span("Latent risk: ", style={"color": "#f86e02"}),
                                                 "The child has latent risk of suffering this disease."]),
-                                                html.Li([html.Span("High risk: ", style={"color": "#f30404", "font-weight": "bold"}),
+                                                html.Li([html.Span("High risk: ", style={"color": "#f30404"}),
                                                 "The child should be prioritized."]),
                                             ]),
                                         ]),
@@ -332,7 +332,7 @@ prediction_cards = dbc.Card(
 
 
 text_short_SHAP_1 = ("What you see on the left side is a waterfall plot to visualize "
-"SHAP values for each model feature. Feature values in", html.Span(" pink ", style={"color": "#f8026a", "font-weight": "bold"}),
+"SHAP values for each model feature. Feature values in", html.Span(" pink ", ),
 "cause an increase in the "
 "final prediction (malnutrition/relapse probability). In contrast, feature "
 "values in" , html.Span(" blue ", style={"color": "#0288f8", "font-weight": "bold"}), "cause a decrease in the final prediction. Size of the bar shows the "
@@ -343,8 +343,8 @@ text_short_SHAP_1 = ("What you see on the left side is a waterfall plot to visua
 
 #f"Model predicted {prob:.3f}
 text_short_SHAP_2 = ("Model predicted a probability of ",
-html.Span(children=[],id="prob-span", style={"color": "#f8026a", "font-weight": "bold"}),
-" of suffering ", html.Span(children=[],id="model-span", style={"color": "#f8026a", "font-weight": "bold"}),
+html.Span(children=[],id="prob-span"),
+" of suffering ", html.Span(children=[],id="model-span"),
 ", whereas the base_value is 0.5. Biggest "
 "effect is caused by the children being classified 3 times with malnutrition in the past "
 "12 months; This has increased his chances of a relapse significatively. This same effect " 
