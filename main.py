@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output, State
 from app import app
 
 # Connect to app pages
-from apps import  Home ,About, dashboard , PredicTool 
+from apps import  Home #,About, dashboard , PredicTool 
 # ,  Malnutrition
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
@@ -42,12 +42,12 @@ sidebar = html.Div(
                 dbc.NavLink("Home", href='/apps/Home', active="exact"),
                 html.Hr(),
                 html.P("ANALYTICS", className='text-p'),
-                dbc.NavLink('Dashboard', href='/apps/Dashboard', active="exact"),
+                #dbc.NavLink('Dashboard', href='/apps/Dashboard', active="exact"),
                 html.P("CHILDREN AT RISK", className='text-p'),
                 # dbc.NavLink('Malnutrition', href='/apps/Malnutrition', active="exact"),
                 # dbc.NavLink('Relapse', href='/apps/Relapse', active="exact"),
-                dbc.NavLink('Prediction Tool', href='/apps/PredicTool', active="exact"),
-                dbc.NavLink('About Us', href='/apps/About', active="exact"),
+                #dbc.NavLink('Prediction Tool', href='/apps/PredicTool', active="exact"),
+                #dbc.NavLink('About Us', href='/apps/About', active="exact"),
             ],
             vertical=True,
             pills=True,
@@ -77,21 +77,21 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/apps/Home':
         return Home.layout
-    if pathname == '/apps/Dashboard':
-        return dashboard.layout
+    #if pathname == '/apps/Dashboard':
+        #return dashboard.layout
     # if pathname == '/apps/Malnutrition':
     #     return Malnutrition.layout
-    if pathname == '/apps/PredicTool':
-         return PredicTool.layout
-    if pathname == '/apps/About':
-        return About.layout
-    else:
-        return Home.layout
+    #if pathname == '/apps/PredicTool':
+         #return PredicTool.layout
+    #if pathname == '/apps/About':
+        #return About.layout
+    #else:
+        #return Home.layout
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, host="0.0.0.0", port=8080)
-    #app.run_server(debug=True, port=8080)
+    #app.run_server(debug=True, host="0.0.0.0", port=8080)
+    app.run_server(debug=True, port=8080)
 
 
 

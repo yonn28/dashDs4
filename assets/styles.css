@@ -175,3 +175,15 @@ a:hover{
     display: flex;
     justify-content: center;
  }
+
+ .jumbotron{
+    background-image: url("/assets/happychildren.jpg");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*color: white;*/
+    height: 300px;
+
+ }
