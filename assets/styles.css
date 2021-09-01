@@ -17,7 +17,7 @@ body{
     height: 100vh;
     width: 100%;
 }
-
+/*
 a{
     text-decoration: none;
     color: white;
@@ -29,7 +29,7 @@ a:hover{
     text-decoration: none;
     padding: 2px;
 }
-
+*/
 .app_side_bar{
     display: flex;
     flex: 10;
@@ -94,6 +94,7 @@ a:hover{
 .content {
     /*margin-top: 20px;*/
     padding: 15px;
+    /*display: flex;*/
 }
 
 
@@ -175,3 +176,68 @@ a:hover{
     display: flex;
     justify-content: center;
  }
+
+ .jumbotron{
+    background-image: url("/assets/home/children-playing-grass.jpg"); /*happychildren.jpg*/   
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: white;
+    height: auto;
+ }
+
+.product_title{
+    background: rgba(80, 80, 80, 0.6) none repeat scroll 0% 0%;
+    display: inline-block;
+    padding: 5px;
+    text-shadow: black 1px 1px;
+}
+
+
+ .text_jumbotron{
+    background: rgba(80, 80, 80, 0.6) none repeat scroll 0% 0%;
+    display: inline-block;
+    padding: 5px;
+ }
+
+ .vertical-center {
+    min-height: 100%;
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+  }
+
+
+
+  .homeFont {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    }
+
+/* Buttons */
+
+.btn-info {
+    background-color: #21ddfb;
+    padding: 1rem 4rem;
+    border: 3px solid transparent;
+}
+
+.btn-info:hover {
+    background-color: #21ddfb;
+    border: 3px solid #21ddfb;
+    color: #21ddfb;
+}
+
+.btn-info:active {
+    background-color: transparent !important;
+    border: 3px solid #21ddfb !important;
+    color: #21ddfb !important;
+}

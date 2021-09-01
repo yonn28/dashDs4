@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output, State
 from app import app
 
 # Connect to app pages
-from apps import  Home ,About, dashboard , PredicTool 
+from apps import  Home, PredicTool, About, dashboard  
 # ,  Malnutrition
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
@@ -90,8 +90,8 @@ def display_page(pathname):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, host="0.0.0.0", port=8080)
-    #app.run_server(debug=True, port=8080)
+    app.run_server(host="0.0.0.0", port=8080) # To make it public on the Internet
+    #app.run_server(debug=True, port=8080) # To test locally
 
 
 
