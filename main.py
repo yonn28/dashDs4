@@ -85,8 +85,8 @@ def display_page(pathname):
          return PredicTool.layout
     if pathname == '/apps/About':
         return About.layout
-    #else:
-        #return Home.layout
+    else:
+        return Home.layout
 
 
 if __name__ == '__main__':
