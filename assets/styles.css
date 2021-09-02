@@ -74,6 +74,10 @@ body{
     color: #51CBFF;
 }
 
+.card-v{
+	color: #DD4095;
+}
+
 .img_footer{
     position: fixed;
     bottom: 10px;
