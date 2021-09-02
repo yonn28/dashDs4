@@ -496,8 +496,8 @@ def on_button_click(n, model_val, care, min_z, max_z, avg_z, under, over, switch
         elif prob <= 1:
             color_bar = "#f30404" #alt. danger
         
-        print(type(shap_values[1][0]))
-
+        # print(type(shap_values[1][0]))
+        
         
         var_least, var_great = PredictMini.greatest_least(shap_vals)
 
