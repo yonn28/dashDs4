@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #Tratamiento de datos:
 import pandas as pd
+import numpy as np
 # Cargar y guardar modelos sklearn:
 import joblib
 # Visualization:
@@ -144,3 +145,25 @@ def plotShapValues(objeto_modelo,base_variables):
 
 def obtenerProbabilidad(objeto_modelo,base_variables):
     return(objeto_modelo.predict_proba(base_variables)[:,1])
+
+
+
+
+def greatest_least(shap_vals):
+    features = ["AVG_ZScorePesoTalla_12M","MAX_ZScorePesoTalla_12M","Veces_DesnutricionSM_12M","Veces_SobrePeso_12M","MIN_ZScorePesoTalla_12M",
+    "tip_cuidado_niños_2.0","ind_discap_ninguna_1.0","ind_leer_escribir_9.0","ind_estudia_1.0","ind_recibe_comida_1.0"]
+
+    var_great = features[np.argmax(shap_vals)]
+    val_great = np.max(shap_vals)
+    var_least = features[np.argmin(shap_vals)]
+    val_least = np.min(shap_vals)
+
+    print(var_great)
+
+    if val_great == 0:
+        var_great = ""
+    if val_least == 0:
+        var_least = ""
+
+    return (var_least, var_great)
+    

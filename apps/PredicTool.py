@@ -338,7 +338,7 @@ text_short_SHAP_1 = ("What you see on the left side is a waterfall plot to visua
 "final prediction (malnutrition/relapse probability). In contrast, feature "
 "values in" , html.Span(" blue ", className="blue_bold"), "cause a decrease in the final prediction. Size of the bar shows the "
 "magnitude of the feature's effect. A larger bar means that the corresponding feature "
-"has larger impact. The sum of all feature shap values explains why model prediction "
+"has larger impact. The sum of all feature SHAP values explains why model prediction "
 "was different from the baseline.")
 
 
@@ -346,20 +346,16 @@ text_short_SHAP_1 = ("What you see on the left side is a waterfall plot to visua
 text_short_SHAP_2 = ("Model predicted a probability of ",
 html.Span(children=[],id="prob-span", className="pink_bold"),
 " of suffering ", html.Span(children=[],id="model-span", className="pink_bold"),
-", whereas the base_value is 0.5. Biggest "
-"effect is caused by the children being classified 3 times with malnutrition in the past "
-"12 months; This has increased his chances of a relapse significatively. This same effect " 
-"is caused by having an average ZScorePesoTalla of X, and… (asi con c/u?). In contrast, "
-"the fact that the children is studying decreases the final probability. ")
+", whereas the base_value is 0.5. ", html.P(id="msg-least",children=[]), html.P(id="msg-great",children=[]))
 
 description_short_SHAP = dbc.Alert(
             [   
                 html.P(text_short_SHAP_1),
                 html.P(text_short_SHAP_2),
-                html.A("example link", href="#", className="alert-link"),
+                #html.A("example link", href="#", className="alert-link"),
                 #html.B(red, style:"red")
             ],
-            color="dark", className="text-justify",
+            color="dark", className="text-justify p-4",
         )
 
 
@@ -428,6 +424,8 @@ layout = dbc.Container(
     Output(component_id = "prog-bar", component_property = "children"),
     Output(component_id = "prog-bar", component_property = "value"),
     Output(component_id = "prog-bar", component_property = "color"),
+    Output(component_id = "msg-least", component_property = "children"),
+    Output(component_id = "msg-great", component_property = "children"),
     ],
     [Input(component_id = "button_pred", component_property = "n_clicks"),
     ],
@@ -442,6 +440,7 @@ layout = dbc.Container(
     ]
 )
 def on_button_click(n, model_val, care, min_z, max_z, avg_z, under, over, switch_list):
+    """
     print(f"button-n_clicks are: {n}, and type: {type(n)}")
     print(f"value model is: {model_val}, and type: {type(model_val)}")
     print(f"value care is: {care}, and type: {type(care)}")
@@ -451,7 +450,7 @@ def on_button_click(n, model_val, care, min_z, max_z, avg_z, under, over, switch
     print(f"value under is: {under}, and type: {type(under)}")
     print(f"value over is: {over}, and type: {type(over)}")
     print(f"value switch_list is: {switch_list}, and type: {type(switch_list)}")
-
+    """
     # Trigger: each time the user gives a click
     if n >= 0:
         # Building the feature vector
@@ -484,7 +483,8 @@ def on_button_click(n, model_val, care, min_z, max_z, avg_z, under, over, switch
             print("Relapse")
         
         # Prob. predicted for the model
-        prob = 0.5 + shap_values[1][0].sum()
+        shap_vals = shap_values[1][0]
+        prob = 0.5 + shap_vals.sum()
 
         # Bar color selection
         if prob <= ranges[0]:
@@ -495,8 +495,28 @@ def on_button_click(n, model_val, care, min_z, max_z, avg_z, under, over, switch
             color_bar = "#f86e02"
         elif prob <= 1:
             color_bar = "#f30404" #alt. danger
+        
+        print(type(shap_values[1][0]))
 
-        return (img, f"{prob:.3f}", str_modelo, f"{prob*100:.0f}%", f"{prob*100:.0f}", color_bar)
+        
+        var_least, var_great = PredictMini.greatest_least(shap_vals)
+
+        msg_least = ""
+        msg_greatest = ""
+
+        if var_least != "":
+            msg_least = ("The variable ", html.Span(var_least,className="blue_bold"), " was the one with ",
+            "the greatest effect in ", html.Span("reducing", className="blue_bold"), " the risk of suffering ",
+            html.Span(str_modelo, className="pink_bold"), ". ")
+
+
+        if var_great != "":
+            msg_great = ("The variable ", html.Span(var_great, className="pink_bold"), " was the one with ",
+            "the greatest effect in ", html.Span("increasing", className="pink_bold"), " the risk of suffering ",
+            html.Span(str_modelo, className="pink_bold"), ".")
+
+
+        return (img, f"{prob:.3f}", str_modelo, f"{prob*100:.0f}%", f"{prob*100:.0f}", color_bar, msg_least, msg_great)
 
 
 
