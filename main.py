@@ -7,7 +7,6 @@ from app import app
 
 # Connect to app pages
 from apps import  Home, PredicTool, About, dashboard, Malnutrition  
-# ,  Malnutrition
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
