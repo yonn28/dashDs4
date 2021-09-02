@@ -11,11 +11,6 @@ from apps import  Home, PredicTool, About, dashboard
 # USERNAMEINFO = [['user','password']]
 # auth = dash_auth.BasicAuth(app,USERNAMEINFO)
 
-"""
-header = html.Div([
-    html.Img(src='/assets/correlation.png')
-], className="app_header")
-"""
 
 header = dbc.Navbar(
     [
@@ -24,7 +19,7 @@ header = dbc.Navbar(
                 [
                     dbc.Col(dbc.NavbarBrand("ICBF - Children Malnutrition in Colombia", className="font-weight-bold"), align="left")
                 ],
-                align="center",
+                align="center"
             ),
         ),
         dbc.Collapse(
@@ -33,6 +28,7 @@ header = dbc.Navbar(
     ],
     color="white",
     light=True,
+    className = 'nav-bar__fix'
 )
 
 sidebar = html.Div(

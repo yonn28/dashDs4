@@ -17,19 +17,7 @@ body{
     height: 100vh;
     width: 100%;
 }
-/*
-a{
-    text-decoration: none;
-    color: white;
-}
 
-a:hover{
-    color: white;
-    background-color: #145795;
-    text-decoration: none;
-    padding: 2px;
-}
-*/
 .app_side_bar{
     display: flex;
     flex: 10;
@@ -39,7 +27,8 @@ a:hover{
     border-radius: 2px;
 }
 
-.app-container__header__content{
+.app-container__header__content {
+    margin-top: 10px;
     flex: 88;
     overflow-y: scroll;
 }
@@ -54,6 +43,13 @@ a:hover{
     display: flex;
     justify-content: flex-end;
     box-shadow: 2px 2px 2px 1px #d2d5d6;
+}
+
+.nav-bar__fix{
+    top: 0;
+    position: fixed;
+    width: 87%;
+    z-index: 1;
 }
 
 .nav-bar__links{
@@ -92,8 +88,9 @@ a:hover{
 }
 
 .content {
-    /*margin-top: 20px;*/
+    padding-top: 50px;
     padding: 15px;
+    margin-top: 5%;
     /*display: flex;*/
 }
 
@@ -240,4 +237,8 @@ a:hover{
     background-color: transparent !important;
     border: 3px solid #21ddfb !important;
     color: #21ddfb !important;
+}
+
+.dashboard__margin__top{
+    margin-top: 1rem;
 }

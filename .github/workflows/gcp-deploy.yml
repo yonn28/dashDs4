@@ -3,7 +3,7 @@ name: Deploy GCP
 
 on:
   push:
-    branches: [ main]
+    branches: [ main ]
 
 jobs:
   deploy:
@@ -47,4 +47,4 @@ jobs:
         --allow-unauthenticated \
         --project ${{ secrets.GCP_PROJECT_ID }} \
         --memory=8Gi \
-        --cpu=2
+        --cpu=2 
