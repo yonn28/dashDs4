@@ -75,9 +75,9 @@ def display_page(pathname):
     if pathname == '/apps/Dashboard':
         return dashboard.layout
     if pathname == '/apps/Overview':
-         return Malnutrition.layout
+        return Malnutrition.layout
     if pathname == '/apps/PredicTool':
-         return PredicTool.layout
+        return PredicTool.layout
     if pathname == '/apps/About':
         return About.layout
     else:
