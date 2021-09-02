@@ -34,7 +34,7 @@ text_statistics = html.P("Get insights for the malnutrition in children at ICBF.
                     " Timelines, maps and more plots are there for you.",
                     className="lead just_center")
 
-text_pred_db = html.P("Predict the probability  of malnutrition or relapse in children under five age at ICBF."
+text_pred_db = html.P("Predict the probability  of malnutrition or relapse in children under five years of age at ICBF."
                     " Furthermore, you can upload the database of children of interest and get the predictions"
                     " of their probability of suffering malnutrition within the next six months."
                     " We made use of 60+ nutritional and sociodemographic features.",
@@ -64,7 +64,7 @@ layout = dbc.Container(
         ),
         dbc.Row([
             
-            dbc.Col([html.P("Statistics", className="homeFont just_center"),
+            dbc.Col([html.P("Dashboard", className="homeFont just_center"),
                 html.Div([
                     html.Img(src='/assets/home/statistics.png'),
                 ], className = "just_center"),
@@ -76,7 +76,7 @@ layout = dbc.Container(
             ], width=4, className="text-justify md-4",),# align="center"),
 
 
-            dbc.Col([html.P("Prediction with database", className="homeFont just_center"),
+            dbc.Col([html.P("Database Prediction", className="homeFont just_center"),
                 html.Div([
                     html.Img(src='/assets/home/db.png'),
                 ], className = "just_center"),
@@ -88,7 +88,7 @@ layout = dbc.Container(
             ], width=4,id="col-home-2", className="text-justify md-4", align="center"),
 
 
-            dbc.Col([html.P("Form", className="homeFont just_center"),
+            dbc.Col([html.P("Individual Prediction", className="homeFont just_center"),
                 html.Div([
                     html.Img(src='/assets/home/form.png'),
                 ], className = "just_center"),
