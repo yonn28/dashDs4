@@ -3,7 +3,7 @@ name: Deploy GCP
 
 on:
   push:
-    branches: [ main ]
+    branches: [Malnutrition]
 
 jobs:
   deploy:
