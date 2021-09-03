@@ -96,7 +96,7 @@ layout = dbc.Container([
                             [
                                 dbc.Row([
                                     dbc.Col(html.H5(id ="n_children", className="card-v"), width={"size": 4,"offset": 1}),
-                                    dbc.Col(html.H5(id ="p_range", className="card-v"), width={"size": 5, "offset": 1}),
+                                    dbc.Col(html.H5(id ="p_range", className="card-v"), width={"size": 6, "offset": 1}),
                                 ]),
                                 dbc.Row([
                                     dbc.Col(html.H6("Children at Risk", className='text-v')),

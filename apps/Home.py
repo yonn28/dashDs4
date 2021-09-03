@@ -19,7 +19,7 @@ banner_jumbotron = dbc.Jumbotron(
             ),
             html.Br(),
             html.P(
-                "Our models were fitted with more than 100.000 registers of children at ICBF",
+                "Our models were fitted with +800.000 registers of children at ICBF",
                 className="lead text_jumbotron",
             ),
             html.P(dbc.Button("Learn more", color="primary",
