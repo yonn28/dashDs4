@@ -278,6 +278,8 @@ def bar_plots(value, model):
 """
 callback to download .csv file with info of the children at risk
 """
+n_clicks = 0
+
 @app.callback(
     Output("download-dataframe-csv", "data"),
     [Input("btn_csv", "n_clicks"),
