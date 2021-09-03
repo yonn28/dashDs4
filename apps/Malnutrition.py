@@ -42,7 +42,7 @@ n_children_m = requests.get('https://sharpvalues1-zbca65qbuq-nn.a.run.app/api/v2
 #Shap values img
 shap_m = requests.get('https://sharpvalues1-zbca65qbuq-nn.a.run.app/api/v2/shap_mal').json()
 #Table with data to show on the app
-df_show_m_dict = requests.get("https://sharpvalues1-zbca65qbuq-nn.a.run.app/api/v2/show_mal", headers={"content-type":"text", "initial":str(0), "end":str(1000)}).json()
+df_show_m_dict = requests.get("https://sharpvalues1-zbca65qbuq-nn.a.run.app/api/v2/show_mal", headers={"content-type":"text", "initial":str(0), "end":str(20)}).json()
 df_show_m = pd.DataFrame.from_dict(df_show_m_dict)
 
 show_table_m = df_show_m[['Child ID', 'MIN ZScore', 'MAX ZScore', 'AVG ZScore', 'Malnutrition Count', 'Appropiate Count',
