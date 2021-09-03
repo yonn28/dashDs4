@@ -9,81 +9,94 @@ import dash_bootstrap_components as dbc
 from utils import mapcolombia
 from utils import plot_by_year
 import pandas as pd
+from urllib.request import urlopen
+import requests
 import math
+import ssl
+import json
 
-figmap, dpts_count, colombia = mapcolombia.getfigmap()
+ssl._create_default_https_context = ssl._create_unverified_context
+
+with urlopen('https://raw.githubusercontent.com/namonroyr/colombia_mapa/master/co_2018_MGN_DPTO_POLITICO.geojson') as response:
+    colombia = json.load(response)
+
+mapa = requests.get("https://mapsmicroservice-zbca65qbuq-nn.a.run.app/api/v1/maps")
+dpts_count = pd.DataFrame.from_dict(mapa.json())
+
+
 fig_years_dist = plot_by_year.ploting_distribution()
 
-figmap2 = figmap #this is temporary until get real information
+years = dpts_count['Año'].unique()
+slider_items = {int(math.floor(years[i])):str(math.floor(years[i])) for i in range(len(years))}
 
-years = dpts_count['anno_encuesta_x'].unique()
-slider_items = {int(i) : str(math.floor(years[i])) for i in range(len(years))}
-
+"""
 controlslider = html.Div([
-    dbc.Alert("Show national distributions for reincidence filter by sociodemografic data", color="primary"),
-    dcc.Slider(
-        id ='slider-year',
-        min = 0,
-        max = len(years)-1,
-        step = None,
-        marks = slider_items,
-        value = 0
+    dcc.RangeSlider(
+        id='slider-year',
+        min=2017,
+        max=2020,
+        step=None,            # True, False - insert dots, only when step>1
+        allowCross=False,
+        marks=slider_items,
+        value=2017,
     )  
 ])
-
-
-control_dropdown = html.Div(
-    [   
-        dbc.Label('year'),
-        dcc.Dropdown(
-            id='year_dropdown',
-            options = [{'value': i, 'label': i} for i in dpts_count['anno_encuesta_x'].unique()],
-            value = dpts_count['anno_encuesta_x'].unique()[0]
-        )
-    ]
-)
+"""
 
 card_map = dbc.Card(
     dbc.CardBody([    
-        html.H4("Colombian map by years"),
+        html.H4("Malnutrition Relapse % by Department"),
+        html.Hr(id="hr_1"),
         # html.Div(control_dropdown),
         html.Div(
             dcc.Graph(
                 id='colombia_plot',
-                figure=figmap
+                figure={}
             )
         )     
     ])
-)
+,color="primary", outline=True)
 
 card_map2 = dbc.Card(
     dbc.CardBody([    
-        html.H4("distribution by socio demografic data"),
-        html.Div(control_dropdown),
+        html.H4("Malnutrition % by Department"),
+        html.Hr(id="hr_1"),
         html.Div(
             dcc.Graph(
                 id='colombia_plot_2',
-                figure=figmap2
+                figure={}
             )
         )     
     ])
-)
+,color="primary", outline=True)
 
-card_graph_distribution = dbc.Card([
+card_graph_distribution = dbc.Card(
     dbc.CardBody([
-        html.H4("Reincidence by year", className="card-title"),
-        dcc.Graph(
-            id='years_dist_plot',
-            figure=fig_years_dist
-        )
+        dbc.Card([
+            dbc.CardBody([
+                html.H4("Malnutrition Relapse by Year", className="card-title"),
+                html.Hr(id="hr_1"),
+                dcc.Graph(
+                    id='years_dist_plot',
+                    figure=fig_years_dist
+                )
+            ])
+        ],color="primary", outline=True)
     ])
-])
+,color="light", outline=True)
 
 colombian_maps = dbc.Card([
     dbc.CardBody([
         dbc.Row([
             dbc.Col(
-                controlslider, width = 12
+                dcc.Slider(
+                    id='slider-year',
+                    min=2017,
+                    max=2020,
+                    step=None,
+                    marks=slider_items,
+                    value=2017,
+                ), width=12
             )
         ]),
         dbc.Row([
@@ -95,51 +108,24 @@ colombian_maps = dbc.Card([
             )
         ])
     ])
-])
+],color="light", outline=True)
 
 
-layout = html.Div([
-    colombian_maps,
+layout = dbc.Container([
+    dbc.Row(dbc.Col(colombian_maps, width=12)),
     dbc.Row([
         dbc.Col(
-            card_graph_distribution, width = 12
+            card_graph_distribution, width=12
         )
-      ],className='dashboard__margin__top'
-    )
-], className = 'dashboard__margin__top')
+      ])
+], fluid=True)
 
 
-
-@app.callback(Output('colombia_plot', 'figure'),
-              Input('slider-year', 'value'))
-def display_map(value):
-    year = math.floor(years[value])
-    dpts_count_filtered = dpts_count[dpts_count['anno_encuesta_x'] == year]
-    figmap = px.choropleth_mapbox(dpts_count_filtered, geojson=colombia, locations='nom_dpto',
-                            featureidkey="properties.DPTO_CNMBR",
-                            color='count_ratio',
-                            color_continuous_scale='ylorrd',
-                            mapbox_style="carto-positron",
-                            zoom=3, center={"lat": 4.570868, "lon": -74.297333},
-                            opacity=0.5,
-                            labels={'unemp': 'unemployment rate'}
-                            )
-    figmap.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
-    return figmap
-
-
-@app.callback(Output('colombia_plot_2', 'figure'),
-              Input('year_dropdown', 'value'))
-def display_map_2(value):
-    dpts_count_filtered = dpts_count[dpts_count['anno_encuesta_x'] == value]
-    figmap2 = px.choropleth_mapbox(dpts_count_filtered, geojson=colombia, locations='nom_dpto',
-                            featureidkey="properties.DPTO_CNMBR",
-                            color='count_ratio',
-                            color_continuous_scale='ylorrd',
-                            mapbox_style="carto-positron",
-                            zoom=3, center={"lat": 4.570868, "lon": -74.297333},
-                            opacity=0.5,
-                            labels={'unemp': 'unemployment rate'}
-                            )
-    figmap2.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
-    return figmap2
+@app.callback([Output('colombia_plot', 'figure'),
+              Output('colombia_plot_2', 'figure'),],
+              [Input('slider-year', 'value')])
+def display_maps(value):
+    dpts_count_filtered = dpts_count[dpts_count['Año']==value]
+    figmap_rel = mapcolombia.getfigmap(dpts_count_filtered, 'Relapse_Percentage', 'peach', colombia)
+    figmap_mal = mapcolombia.getfigmap(dpts_count_filtered, 'Malnutrition_Percentage', 'emrld', colombia)
+    return figmap_rel, figmap_mal
