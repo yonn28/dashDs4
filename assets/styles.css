@@ -208,7 +208,15 @@ body{
     align-items: center;
   }
 
+.card-v{
+	color: #DD4095;
+}
 
+.hr_1{
+	borderWidth: 0.1vh;
+	width: 100%;
+	color: #DADADA;
+}
 
   .homeFont {
     font-family: "Trebuchet MS", Helvetica, sans-serif;

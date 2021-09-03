@@ -7,23 +7,15 @@ import ssl
 import requests
 ssl._create_default_https_context = ssl._create_unverified_context
 
-
-def getfigmap():
-
-    with urlopen('https://raw.githubusercontent.com/namonroyr/colombia_mapa/master/co_2018_MGN_DPTO_POLITICO.geojson') as response:
-        colombia = json.load(response)
-
-    mapa = requests.get("https://mapsmicroservice-zbca65qbuq-nn.a.run.app/api/v1/maps")
-    dpts_count = pd.DataFrame.from_dict(mapa.json())
-
-    figmap = px.choropleth_mapbox(dpts_count , geojson=colombia, locations='nom_dpto', 
+def getfigmap(df, var, color, colombia):
+    figmap = px.choropleth_mapbox(df, geojson=colombia, locations='nom_dpto', 
                             featureidkey="properties.DPTO_CNMBR",
-                            color='count_ratio',
-                            color_continuous_scale='plasma',
+                            color=var,
+                            color_continuous_scale=color,
                             mapbox_style="carto-positron",
-                            zoom=3, center = {"lat": 4.570868, "lon": -74.297333},
+                            zoom=4, center = {"lat": 4.570868, "lon": -74.297333},
                             opacity=0.5,
-                            labels={'unemp':'unemployment rate'}
+                            labels={'Relapse_Percentage': '%', 'Malnutrition_Percentage':'%'}
                             )
     figmap.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-    return  figmap, dpts_count ,colombia 
+    return figmap
