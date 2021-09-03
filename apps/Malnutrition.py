@@ -12,6 +12,7 @@ import requests
 from urllib.request import urlopen
 import joblib
 from utils import top10table
+from utils import SHAP_Val
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
