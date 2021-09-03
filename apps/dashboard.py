@@ -16,7 +16,7 @@ fig_years_dist = plot_by_year.ploting_distribution()
 
 figmap2 = figmap #this is temporary until get real information
 
-years = dpts_count['anno_encuesta_x'].unique()
+years = dpts_count['Año'].unique()
 slider_items = {int(i) : str(math.floor(years[i])) for i in range(len(years))}
 
 controlslider = html.Div([
@@ -37,8 +37,8 @@ control_dropdown = html.Div(
         dbc.Label('year'),
         dcc.Dropdown(
             id='year_dropdown',
-            options = [{'value': i, 'label': i} for i in dpts_count['anno_encuesta_x'].unique()],
-            value = dpts_count['anno_encuesta_x'].unique()[0]
+            options = [{'value': i, 'label': i} for i in dpts_count['Año'].unique()],
+            value = dpts_count['Año'].unique()[0]
         )
     ]
 )
@@ -114,7 +114,7 @@ layout = html.Div([
               Input('slider-year', 'value'))
 def display_map(value):
     year = math.floor(years[value])
-    dpts_count_filtered = dpts_count[dpts_count['anno_encuesta_x'] == year]
+    dpts_count_filtered = dpts_count[dpts_count['Año'] == year]
     figmap = px.choropleth_mapbox(dpts_count_filtered, geojson=colombia, locations='nom_dpto',
                             featureidkey="properties.DPTO_CNMBR",
                             color='count_ratio',
@@ -131,7 +131,7 @@ def display_map(value):
 @app.callback(Output('colombia_plot_2', 'figure'),
               Input('year_dropdown', 'value'))
 def display_map_2(value):
-    dpts_count_filtered = dpts_count[dpts_count['anno_encuesta_x'] == value]
+    dpts_count_filtered = dpts_count[dpts_count['Año'] == value]
     figmap2 = px.choropleth_mapbox(dpts_count_filtered, geojson=colombia, locations='nom_dpto',
                             featureidkey="properties.DPTO_CNMBR",
                             color='count_ratio',

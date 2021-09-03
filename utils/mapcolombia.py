@@ -18,7 +18,7 @@ def getfigmap():
 
     figmap = px.choropleth_mapbox(dpts_count , geojson=colombia, locations='nom_dpto', 
                             featureidkey="properties.DPTO_CNMBR",
-                            color='count_ratio',
+                            color='Relapse_Percentage',
                             color_continuous_scale='plasma',
                             mapbox_style="carto-positron",
                             zoom=3, center = {"lat": 4.570868, "lon": -74.297333},

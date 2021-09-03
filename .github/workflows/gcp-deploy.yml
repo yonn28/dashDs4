@@ -47,4 +47,4 @@ jobs:
         --allow-unauthenticated \
         --project ${{ secrets.GCP_PROJECT_ID }} \
         --memory=8Gi \
-        --cpu=2 
+        --cpu=4
