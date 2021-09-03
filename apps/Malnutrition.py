@@ -10,6 +10,7 @@ from app import app
 import ssl
 import requests
 from urllib.request import urlopen
+import joblib
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
