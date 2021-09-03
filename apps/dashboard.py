@@ -112,7 +112,7 @@ colombian_maps = dbc.Card([
 
 
 layout = dbc.Container([
-    dbc.Row(dbc.Col(colombian_maps, width=12)),
+    dbc.Row(dbc.Col(colombian_maps, width=12), className="mb-4",),
     dbc.Row([
         dbc.Col(
             card_graph_distribution, width=12
