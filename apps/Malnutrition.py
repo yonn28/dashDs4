@@ -119,7 +119,7 @@ layout = dbc.Container([
                 [
                     html.H4("SHAP Values", className="card-title"),
                     html.Hr(id="hr_1"),
-                    dbc.CardImg(id="shap_img")
+                    dbc.CardImg(id="shap_fig")
                 ]
                 ),color="light", outline=True),
         width=5),
@@ -221,7 +221,7 @@ callback to update graphs depending on the model selected
 @app.callback(
     [Output(component_id="n_children", component_property="children"),
     Output(component_id="p_range", component_property="children"),
-    Output(component_id="shap_img", component_property="src"),
+    Output(component_id="shap_fig", component_property="src"),
     Output(component_id="dist_plot", component_property="figure"),],
     [Input(component_id="model", component_property="value"),]
 )
