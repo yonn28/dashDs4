@@ -17,6 +17,8 @@
   <p align="center">
     The ultimate platform to predict malnutrition and its relapse in children under five years of age. Our ML models were fitted with 800.000+ registers of children at ICBF.
     <br />
+    <a href="http://www.kidnutrilytics.com:8080/apps/Home"><strong>Explore the App» </strong></a>
+    <br />
     <a href="https://github.com/yonn28/dashDs4"><strong>Explore the GitHub Repo» </strong></a>
   </p>
 </p>
