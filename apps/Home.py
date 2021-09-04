@@ -19,7 +19,7 @@ banner_jumbotron = dbc.Jumbotron(
             ),
             html.Br(),
             html.P(
-                "Our models were fitted with +800.000 registers of children at ICBF",
+                "Our models were fitted with 800.000+ registers of children at ICBF",
                 className="lead text_jumbotron",
             ),
             html.P(dbc.Button("Learn more", color="primary",
@@ -35,11 +35,11 @@ text_statistics = html.P("Get insights for the malnutrition in children at ICBF.
                     className="lead just_center")
 
 text_pred_db = html.P("Predict the probability of malnutrition or relapse in children under five years of age at ICBF "
-                    "within the next 12 months. Moreover, you can download the information of the children that should be prioritized."
+                    "within the next 6 months. Moreover, you can download the information of the children that should be prioritized."
                     " We made use of 60+ nutritional and sociodemographic features.",
                     className="lead just_center")
 
-text_pred_form = html.P("Predict the probability  of malnutrition or relapse on it within the next six months"
+text_pred_form = html.P("Predict the probability  of malnutrition or relapse on it within the next 6 months"
                         " of a single children by just filling up a form. With only 10 features we can suggest"
                         " if the child should be prioritized.",
                     className="lead just_center")

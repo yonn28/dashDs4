@@ -34,15 +34,15 @@ sidebar = html.Div(
     [
         dbc.Nav(
             [
-                dbc.NavLink("Home", href='/apps/Home', active="exact"),
+                dbc.NavLink(children=[html.Img(src='/assets/home_icon.png'), '  Home'], href='/apps/Home', active="exact"),
                 html.Hr(),
                 html.P("ANALYTICS", className='text-p'),
-                dbc.NavLink('Dashboard', href='/apps/Dashboard', active="exact"),
+                dbc.NavLink(children=[html.Img(src='/assets/dash_icon.png'),'  Dashboard'], href='/apps/Dashboard', active="exact"),
                 html.P("CHILDREN AT RISK", className='text-p'),
-                dbc.NavLink('Database Prediction', href='/apps/Malnutrition', active="exact"),
-                # dbc.NavLink('Relapse', href='/apps/Relapse', active="exact"),
-                dbc.NavLink('Individual Prediction', href='/apps/PredicTool', active="exact"),
-                dbc.NavLink('About Us', href='/apps/About', active="exact"),
+                dbc.NavLink(children=[html.Img(src='/assets/db_icon.png'), '  Database Prediction'], href='/apps/Malnutrition', active="exact"),
+                dbc.NavLink(children=[html.Img(src='/assets/ind_icon.png'), '  Individual Prediction'], href='/apps/PredicTool', active="exact"),
+                dbc.NavLink(children=[html.Img(src='/assets/about_icon.png'), '  About Us'], href='/apps/About', active="exact")
+                ])
             ],
             vertical=True,
             pills=True,

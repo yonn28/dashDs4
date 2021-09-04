@@ -20,7 +20,7 @@ body{
 
 .app_side_bar{
     display: flex;
-    flex: 10;
+    flex: 11;
     padding: 2rem 1rem;
     background:#0B3862;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
